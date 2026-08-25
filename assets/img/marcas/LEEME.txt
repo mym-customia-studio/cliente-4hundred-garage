@@ -1,0 +1,8 @@
+Poné acá los logos oficiales de las marcas de productos (pedidos al distribuidor
+o bajados del kit de prensa de cada marca), en PNG o SVG con fondo transparente:
+
+  liqui-moly.png · vonixx.png · 3m.png · meguiars.png
+  sonax.png · menzerna.png · ternnova.png · turtle-wax.png
+
+La banda los toma automáticamente; si un archivo no está, muestra el nombre
+de la marca en tipografía neón como respaldo. No hace falta tocar el HTML.
