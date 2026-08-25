@@ -95,10 +95,18 @@
       clearTimeout(temporizador);
       temporizador = setTimeout(arrancar, 200);
     });
+    var heroVisible = true;
+    var frenar = function () { if (anim) { cancelAnimationFrame(anim); anim = null; } };
+    var seguir = function () { if (!anim && heroVisible && !document.hidden) dibujar(); };
     document.addEventListener('visibilitychange', function () {
-      if (document.hidden) { cancelAnimationFrame(anim); anim = null; }
-      else if (!anim) dibujar();
+      if (document.hidden) frenar(); else seguir();
     });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) {
+        heroVisible = en[0].isIntersecting;
+        if (heroVisible) seguir(); else frenar();
+      }).observe(lienzo);
+    }
   }
 
   /* ---------- Faro que sigue al puntero ---------- */
@@ -140,6 +148,17 @@
     g.classList.remove('aparece');
     g.querySelectorAll('.tarjeta').forEach(function (t) { t.classList.add('t-solo'); });
   });
+
+  /* marquesinas: solo animan mientras se ven */
+  if ('IntersectionObserver' in window) {
+    var obsMarq = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (en) {
+        var pistaM = en.target.querySelector('.marquesina-pista');
+        if (pistaM) pistaM.style.animationPlayState = en.isIntersecting ? 'running' : 'paused';
+      });
+    });
+    document.querySelectorAll('.marquesina').forEach(function (mq) { obsMarq.observe(mq); });
+  }
 
   var animables = document.querySelectorAll('.aparece, .gauge, .t-solo, [data-contador]');
   if ('IntersectionObserver' in window && animables.length) {

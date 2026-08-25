@@ -634,14 +634,16 @@ form{display:grid;gap:16px}
 .wa{
   position:fixed;right:max(16px, env(safe-area-inset-right));bottom:max(16px, env(safe-area-inset-bottom));z-index:80;width:58px;height:58px;border-radius:50%;
   background:var(--negro-2);display:grid;place-items:center;border:2px solid var(--rojo);
-  box-shadow:0 0 22px rgba(254,6,20,.55),0 0 46px rgba(254,6,20,.22),inset 0 0 12px rgba(254,6,20,.28);
-  transition:var(--trans);animation:wa-late 2.6s ease-in-out infinite;
+  box-shadow:0 0 22px rgba(254,6,20,.5),inset 0 0 12px rgba(254,6,20,.28);
+  transition:var(--trans);
 }
+.wa::before{content:"";position:absolute;inset:-3px;border-radius:50%;z-index:-1;
+  box-shadow:0 0 30px rgba(254,6,20,.85),0 0 70px rgba(254,6,20,.35);
+  opacity:.35;animation:wa-late 2.6s ease-in-out infinite;will-change:opacity}
 .wa:hover{transform:scale(1.08);background:var(--rojo)}
 .wa svg{width:30px;height:30px;fill:var(--rojo);filter:drop-shadow(0 0 6px rgba(254,6,20,.9));transition:var(--trans)}
 .wa:hover svg{fill:#fff;filter:none}
-@keyframes wa-late{0%,100%{box-shadow:0 0 22px rgba(254,6,20,.55),0 0 46px rgba(254,6,20,.22),inset 0 0 12px rgba(254,6,20,.28)}
-  50%{box-shadow:0 0 30px rgba(254,6,20,.85),0 0 70px rgba(254,6,20,.35),inset 0 0 16px rgba(254,6,20,.4)}}
+@keyframes wa-late{0%,100%{opacity:.3}50%{opacity:1}}
 
 /* ---------- Animación de entrada ---------- */
 .aparece{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
