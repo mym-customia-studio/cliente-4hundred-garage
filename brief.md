@@ -12,7 +12,8 @@
 | Dirección | Av. Pres. Arturo Umberto Illia 196, B1669 José C. Paz, Buenos Aires | ✅ |
 | Teléfono / WhatsApp | 11 5912-3836 | ✅ |
 | Horario | Lunes a sábados de 9:00 a 18:00 | ⚠️ **a confirmar** (Google solo dice "abre a las 9") |
-| Email | contacto@4hundredgarage.com.ar | ⚠️ **placeholder** — falta dominio y casilla |
+| Email | contacto@4hundredgarage.com | ⚠️ **falta crear la casilla** (el dominio ya existe) |
+| Dominio | 4hundredgarage.com — comprado el 29/08/2026 en Cloudflare a nombre de MyM, conectado a Vercel. Sitio en https://www.4hundredgarage.com | ✅ |
 | Instagram | @4hundredgarage | ⚠️ **a confirmar el usuario real** |
 | Reseñas | 5.0 ★ con 2 opiniones en Google | ✅ |
 | Sitio web actual | No tiene (la ficha dice "Agregar sitio web") | ✅ |
@@ -51,6 +52,6 @@ Escala a cualquier tamaño, va sobre fondo claro u oscuro y pesa menos de 1 KB.
 
 1. Confirmar horario real, email e Instagram.
 2. **Multimedia**: las fotos actuales son las placas de Instagram, con texto quemado encima y ~470 px de ancho. Sirven para la demo, no para el sitio final. Se cotiza aparte una sesión de fotos del taller y de 3-4 trabajos terminados (antes/después).
-3. Dominio (`.com.ar` por NIC, a nombre de MyM).
+3. ~~Dominio~~ — resuelto: `4hundredgarage.com` en Cloudflare (29/08/2026), conectado a Vercel. Falta crear la casilla `contacto@4hundredgarage.com`.
 4. Reseñas: las tres del sitio son textos de muestra. Reemplazar por las 2 reales de Google, o sumar reseñas nuevas antes de publicar.
 5. Dato "+400 autos atendidos": es un guiño al nombre, **confirmar con el cliente** o cambiarlo por otro dato real.

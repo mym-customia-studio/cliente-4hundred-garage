@@ -1,8 +1,8 @@
 /* Función serverless de Vercel — envía el formulario por Resend.
    Requiere variables de entorno en Vercel:
      RESEND_API_KEY   clave de la cuenta de Resend de MyM
-     MAIL_DESTINO     casilla del cliente (ej. contacto@4hundredgarage.com.ar)
-     MAIL_ORIGEN      remitente verificado (ej. web@4hundredgarage.com.ar)
+     MAIL_DESTINO     casilla del cliente (ej. contacto@4hundredgarage.com)
+     MAIL_ORIGEN      remitente verificado (ej. web@4hundredgarage.com)
    NUNCA hardcodear claves en este archivo. */
 
 export default async function handler(req, res) {
