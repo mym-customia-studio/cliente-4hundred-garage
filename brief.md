@@ -54,6 +54,7 @@ Escala a cualquier tamaño, va sobre fondo claro u oscuro y pesa menos de 1 KB.
 
 1. Confirmar email e Instagram (horario y dirección ya confirmados el 29/08/2026).
 2. **Multimedia**: las fotos actuales son las placas de Instagram, con texto quemado encima y ~470 px de ancho. Sirven para la demo, no para el sitio final. Se cotiza aparte una sesión de fotos del taller y de 3-4 trabajos terminados (antes/después).
+   - Galería: 3 pares generados con IA como demo (`galeria-01/02/03-antes/despues`); reemplazar/sumar pares reales del cliente (misma toma, mismo ángulo).
 3. ~~Dominio~~ — resuelto: `4hundredgarage.com` en Cloudflare (29/08/2026), conectado a Vercel. Falta crear la casilla `contacto@4hundredgarage.com`.
 4. Reseñas: la tercera ("De primera. Me asesoraron y le instalaron un kit de admisión a mi auto en una hora") ya es real (cargada el 29/08/2026). Las dos primeras siguen siendo textos de muestra (marcadas con "▼ RESEÑA DE MUESTRA" en index.html): reemplazar por reseñas reales antes de publicar.
 5. Dato "+400 autos atendidos": es un guiño al nombre, **confirmar con el cliente** o cambiarlo por otro dato real.

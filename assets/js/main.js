@@ -164,6 +164,45 @@
     }, { threshold: 0 }).observe(pie);
   }
 
+  /* ---------- Comparador antes/después (galería) ---------- */
+  var comparadores = document.querySelectorAll('.comparar-marco');
+  if (comparadores.length) {
+    comparadores.forEach(function (marco) {
+      var rango = marco.querySelector('.comparar-rango');
+      if (!rango) return;
+      var poner = function (v) { marco.style.setProperty('--pos', v + '%'); };
+      var enDemo = false;
+      var cortarDemo = function () {
+        if (!enDemo) return;
+        enDemo = false;
+        marco.classList.remove('demo');
+        poner(rango.value);
+      };
+      rango.addEventListener('input', function () { cortarDemo(); poner(rango.value); });
+      rango.addEventListener('pointerdown', cortarDemo);
+      rango.addEventListener('keydown', cortarDemo);
+      poner(rango.value);
+
+      /* Demo automática una sola vez al entrar en pantalla: 50 → 15 → 85 → 50 */
+      if (sinMovimiento || !('IntersectionObserver' in window)) return;
+      var obsDemo = new IntersectionObserver(function (en) {
+        if (!en[0].isIntersecting) return;
+        obsDemo.disconnect();
+        /* espera el barrido de entrada de la foto y recién ahí corre la demo */
+        setTimeout(function () {
+          enDemo = true;
+          marco.classList.add('demo');
+          var pasos = [[15, 0], [85, 750], [50, 1500]];
+          pasos.forEach(function (p) {
+            setTimeout(function () { if (enDemo) { rango.value = p[0]; poner(p[0]); } }, p[1]);
+          });
+          setTimeout(function () { if (enDemo) { enDemo = false; marco.classList.remove('demo'); } }, 2300);
+        }, 900);
+      }, { threshold: 0.5 });
+      obsDemo.observe(marco);
+    });
+  }
+
   /* ---------- Barra de progreso de lectura ---------- */
   var progreso = document.querySelector('.progreso');
   if (progreso) {
