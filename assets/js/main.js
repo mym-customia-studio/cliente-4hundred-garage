@@ -206,6 +206,11 @@
   /* ---------- Videos diferidos: se cargan después de load y solo si van a estar en pantalla ---------- */
   var videosDiferidos = document.querySelectorAll('video.video-diferido[data-src]');
   if (videosDiferidos.length) {
+    /* poster chico en celular, grande en PC (se asigna ya, antes del primer paint) */
+    videosDiferidos.forEach(function (v) {
+      if (!v.dataset.poster) return;
+      v.poster = (window.innerWidth <= 600 && v.dataset.posterSm) ? v.dataset.posterSm : v.dataset.poster;
+    });
     var con = navigator.connection || {};
     var conexionLenta = !!con.saveData || /(^|[^0-9])[23]g$/.test(con.effectiveType || '');
     var cargarVideo = function (v) {

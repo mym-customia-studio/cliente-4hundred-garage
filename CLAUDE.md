@@ -66,6 +66,13 @@ node herramientas/minificar-css.js
 
 Si cambia el CSS, subir el `?v=` de los `<link>` en las 7 páginas para romper la caché. Las fuentes Poppins viven en `assets/fonts/` (woff2, subset latin) con `@font-face` al inicio de `estilos.css`; no volver a Google Fonts.
 
+## URLs limpias, SEO y seguridad
+
+- Los enlaces internos van **sin `.html`** y desde la raíz (`href="/"`, `href="/detailing"`, `href="/mecanica#aceite"`) para coincidir con `cleanUrls` de Vercel y con los `canonical`. Por eso el sitio **no se ve bien abriendo los archivos directo con `file://`**: probar siempre con un servidor local (`npx serve .` o `vercel dev`) o en producción.
+- Cada página lleva `canonical`, Open Graph (imagen común `assets/img/og.jpg`, 1200×630), Twitter Card y JSON-LD (`AutoRepair` en el inicio; `BreadcrumbList` + `Service` + `FAQPage` en las internas). Si cambian datos del negocio o las FAQ, actualizar el JSON-LD de esa página.
+- Mantener al día `sitemap.xml` (con `lastmod`), `robots.txt`, `llms.txt` y `404.html` cuando se agregue o cambie una página.
+- `vercel.json` define la CSP (`script-src 'self'`, sin inline) y el resto de cabeceras de seguridad: **no agregar scripts ni handlers inline** (`onclick`, `onload`), ni recursos de dominios externos sin sumarlos a la CSP.
+
 ## Estructura rápida
 
 ```
