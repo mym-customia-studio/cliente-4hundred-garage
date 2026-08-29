@@ -72,6 +72,7 @@ Si cambia el CSS, subir el `?v=` de los `<link>` en las 7 páginas para romper l
 - Cada página lleva `canonical`, Open Graph (imagen común `assets/img/og.jpg`, 1200×630), Twitter Card y JSON-LD (`AutoRepair` en el inicio; `BreadcrumbList` + `Service` + `FAQPage` en las internas). Si cambian datos del negocio o las FAQ, actualizar el JSON-LD de esa página.
 - Mantener al día `sitemap.xml` (con `lastmod`), `robots.txt`, `llms.txt` y `404.html` cuando se agregue o cambie una página.
 - `vercel.json` define la CSP (`script-src 'self'`, sin inline) y el resto de cabeceras de seguridad: **no agregar scripts ni handlers inline** (`onclick`, `onload`), ni recursos de dominios externos sin sumarlos a la CSP.
+- Cloudflare Web Analytics: snippet en todas las páginas antes de `</body>`; dominios permitidos en la CSP. Sitio registrado en la cuenta Cloudflare de MyM (Web Analytics → www.4hundredgarage.com).
 
 ## Estructura rápida
 
