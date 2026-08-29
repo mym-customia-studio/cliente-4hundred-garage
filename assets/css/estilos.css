@@ -45,6 +45,11 @@ h3{font-size:1.25rem;font-style:normal;text-transform:uppercase}
 p{margin:0 0 1em}
 .contenedor{width:100%;max-width:var(--ancho);margin:0 auto;padding:0 22px}
 .seccion{padding:clamp(56px,8vw,110px) 0}
+.seccion--alt{background:var(--negro-2)}
+.seccion--chica{padding:clamp(28px,4vw,48px) 0}
+.enlace-nota{margin:0;font-size:1.1rem}
+.enlace-nota a{color:var(--rojo);font-weight:700;transition:var(--trans)}
+.enlace-nota a:hover{text-decoration:underline}
 .centrado{text-align:center}
 .rojo{color:var(--rojo)}
 .amarillo{color:var(--amarillo)}
@@ -547,6 +552,8 @@ p{margin:0 0 1em}
 .mini-num{font-family:var(--font-titulo);font-style:italic;font-weight:800;font-size:1rem;color:var(--rojo);display:block;margin-bottom:10px}
 .mini h3{font-size:1.05rem;margin-bottom:.4em}
 .mini p{color:var(--texto-sec);font-size:.9rem;margin:0}
+.mini .enlace{display:inline-block;margin-top:12px;min-height:44px;line-height:44px;color:var(--rojo);font-weight:700;font-size:.85rem}
+.mini .enlace:hover{text-decoration:underline}
 
 /* ---------- Proceso ---------- */
 .pasos{counter-reset:paso;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
@@ -618,6 +625,7 @@ form{display:grid;gap:16px}
 
 /* ---------- FAQ ---------- */
 .faq{max-width:820px;margin:0 auto;display:grid;gap:12px}
+.centrado+.faq{margin-top:44px}
 .faq details{background:var(--negro-2);border:1px solid var(--gris-linea);border-radius:var(--radio-sm);padding:18px 22px}
 .faq details[open]{border-color:var(--rojo)}
 .faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
