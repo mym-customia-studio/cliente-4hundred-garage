@@ -40,6 +40,65 @@
     pintarHeader();
   }
 
+  /* ---------- Ancla: re-alinear tras load (fotos/fuentes tardías) ---------- */
+  if (location.hash && location.hash.length > 1) {
+    window.addEventListener('load', function () {
+      var destino = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (destino) destino.scrollIntoView({ block: 'start', behavior: 'instant' });
+    }, { once: true });
+  }
+
+  /* ---------- Menús desplegables (botón "Pedir presupuesto") ---------- */
+  document.querySelectorAll('.btn--menu').forEach(function (boton) {
+    var menu = document.getElementById(boton.getAttribute('aria-controls'));
+    if (!menu) return;
+    var items = menu.querySelectorAll('[role="menuitem"]');
+    var abierto = false;
+
+    var cerrar = function (devolverFoco) {
+      if (!abierto) return;
+      abierto = false;
+      menu.classList.remove('abierto');
+      boton.setAttribute('aria-expanded', 'false');
+      var ocultar = function () { if (!abierto) { menu.hidden = true; menu.classList.remove('arriba'); } };
+      if (sinMovimiento) ocultar(); else setTimeout(ocultar, 180);
+      document.removeEventListener('click', clicFuera);
+      if (devolverFoco) boton.focus();
+    };
+    var clicFuera = function (e) {
+      if (!menu.contains(e.target) && !boton.contains(e.target)) cerrar(false);
+    };
+    var abrir = function () {
+      abierto = true;
+      menu.hidden = false;
+      /* Si no hay lugar debajo, abrir hacia arriba */
+      var r = boton.getBoundingClientRect();
+      var alto = menu.offsetHeight + 8;
+      menu.classList.toggle('arriba', window.innerHeight - r.bottom < alto && r.top > alto);
+      requestAnimationFrame(function () { menu.classList.add('abierto'); });
+      boton.setAttribute('aria-expanded', 'true');
+      setTimeout(function () { document.addEventListener('click', clicFuera); }, 0);
+    };
+
+    boton.addEventListener('click', function () { abierto ? cerrar(true) : abrir(); });
+    boton.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || (e.key === 'Enter' && !abierto)) {
+        e.preventDefault();
+        if (!abierto) abrir();
+        if (items[0]) items[0].focus();
+      }
+    });
+    menu.addEventListener('keydown', function (e) {
+      var i = Array.prototype.indexOf.call(items, document.activeElement);
+      if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+      else if (e.key === 'Escape') { e.preventDefault(); cerrar(true); }
+      else if (e.key === 'Tab') { cerrar(false); }
+    });
+    boton.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(true); });
+    items.forEach(function (it) { it.addEventListener('click', function () { cerrar(false); }); });
+  });
+
   /* ---------- Barra de progreso de lectura ---------- */
   var progreso = document.querySelector('.progreso');
   if (progreso) {

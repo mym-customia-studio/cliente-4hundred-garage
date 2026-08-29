@@ -5,6 +5,7 @@
    ============================================================ */
 
 :root{
+  --alto-header:75px; /* logo 46px + padding 14px×2 + borde 1px */
   /* Paleta del cliente (tomada de sus piezas) */
   --rojo:#FE0614;
   --rojo-osc:#C20510;
@@ -45,6 +46,7 @@ h3{font-size:1.25rem;font-style:normal;text-transform:uppercase}
 p{margin:0 0 1em}
 .contenedor{width:100%;max-width:var(--ancho);margin:0 auto;padding:0 22px}
 .seccion{padding:clamp(56px,8vw,110px) 0}
+[id]{scroll-margin-top:calc(var(--alto-header,75px) + 16px)}
 .seccion--alt{background:var(--negro-2)}
 .seccion--chica{padding:clamp(28px,4vw,48px) 0}
 .enlace-nota{margin:0;font-size:1.1rem}
@@ -389,6 +391,9 @@ p{margin:0 0 1em}
 
 .aparece.visible .partido-txt .etiqueta{opacity:1;animation:etiqueta-track .7s cubic-bezier(.16,1,.3,1) backwards}
 .aparece.visible .partido-txt h2{opacity:1;animation:titulo-vel .85s cubic-bezier(.16,1,.3,1) .1s backwards}
+/* Bloques con ancla (id): título sin desplazamiento vertical grande, para que el salto no "baile" */
+@keyframes titulo-vel-suave{0%{opacity:0;transform:translateY(18px) scale(.98);filter:blur(8px) brightness(1.6)}100%{opacity:1;transform:none;filter:none}}
+.partido.aparece.visible[id] .partido-txt h2{animation-name:titulo-vel-suave}
 .aparece.visible .partido-txt>p{opacity:1;animation:parrafo-foco .8s ease .35s backwards}
 
 /* checklist: cada ítem entra y el tilde se dibuja con rebote */
@@ -521,9 +526,10 @@ p{margin:0 0 1em}
 }
 .tarjeta:hover{transform:translateY(-6px);border-color:var(--rojo)}
 .tarjeta-img{position:relative;aspect-ratio:4/3;overflow:hidden}
-.tarjeta-img img{width:100%;height:100%;object-fit:cover;object-position:center 28%;transition:.5s ease}
-.tarjeta:hover .tarjeta-img img{transform:scale(1.07)}
-.tarjeta-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,13,.95),rgba(12,12,13,.15) 60%)}
+.tarjeta-img picture{display:block;height:100%}
+.tarjeta-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s ease}
+.tarjeta:hover .tarjeta-img img{transform:scale(1.06)}
+.tarjeta-img::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(12,12,13,.85),transparent 36%)}
 .tarjeta-cuerpo{padding:22px 24px 26px;display:flex;flex-direction:column;flex:1}
 .tarjeta h3{margin-bottom:.5em;font-style:italic}
 .tarjeta p{color:var(--texto-sec);font-size:.95rem;flex:1}
@@ -537,7 +543,7 @@ p{margin:0 0 1em}
 .partido{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,70px);align-items:center}
 .partido--inv .partido-txt{order:2}
 .partido-img{position:relative;border-radius:var(--radio);overflow:hidden;box-shadow:var(--sombra)}
-.partido-img img{width:100%}
+.partido-img img{width:100%;height:auto;display:block}
 .lista-check{list-style:none;padding:0;margin:0 0 28px;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}
 .lista-check li{position:relative;padding-left:28px;font-size:.95rem;color:var(--texto-sec)}
 .lista-check li::before{
@@ -547,13 +553,15 @@ p{margin:0 0 1em}
 
 /* ---------- Servicios secundarios ---------- */
 .grid-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--gris-linea);border:1px solid var(--gris-linea);border-radius:var(--radio);overflow:hidden}
-.mini{background:var(--negro-2);padding:30px 26px;transition:var(--trans)}
-.mini:hover{background:var(--gris)}
+.mini{display:block;background:var(--negro-2);padding:30px 26px;border:1px solid transparent;transition:background-color .3s ease,border-color .3s ease}
+.mini:hover,.mini:focus-visible{background:var(--gris);border-color:rgba(254,6,20,.6)}
+.mini:focus-visible{outline:2px solid var(--rojo);outline-offset:2px}
 .mini-num{font-family:var(--font-titulo);font-style:italic;font-weight:800;font-size:1rem;color:var(--rojo);display:block;margin-bottom:10px}
-.mini h3{font-size:1.05rem;margin-bottom:.4em}
+.mini h3{font-size:1.05rem;margin-bottom:.4em;transition:color .25s ease}
+.mini h3::after{content:"→";display:inline-block;margin-left:8px;color:var(--rojo);opacity:0;transform:translateX(-6px);transition:opacity .25s ease,transform .25s ease}
+.mini:hover h3,.mini:focus-visible h3{color:var(--rojo)}
+.mini:hover h3::after,.mini:focus-visible h3::after{opacity:1;transform:none}
 .mini p{color:var(--texto-sec);font-size:.9rem;margin:0}
-.mini .enlace{display:inline-block;margin-top:12px;min-height:44px;line-height:44px;color:var(--rojo);font-weight:700;font-size:.85rem}
-.mini .enlace:hover{text-decoration:underline}
 
 /* ---------- Proceso ---------- */
 .pasos{counter-reset:paso;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
@@ -586,13 +594,9 @@ p{margin:0 0 1em}
 .galeria .alta{grid-row:span 2;aspect-ratio:auto}
 
 /* ---------- Reseñas ---------- */
-.grid-resenas{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.grid-resenas{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;align-items:stretch}
 .resena{background:var(--negro-2);border:1px solid var(--gris-linea);border-radius:var(--radio);padding:28px}
-.resena p{font-size:.98rem;color:var(--texto-sec)}
-.resena-autor{display:flex;align-items:center;gap:12px;margin-top:18px}
-.resena-avatar{width:40px;height:40px;border-radius:50%;background:var(--rojo);display:grid;place-items:center;font-weight:800;font-style:italic;flex:none}
-.resena-autor strong{display:block;font-size:.92rem;color:#fff}
-.resena-autor span{font-size:.8rem;color:var(--texto-sec)}
+.resena p{font-size:.98rem;color:var(--texto-sec);margin:0}
 
 /* ---------- Contacto ---------- */
 .grid-contacto{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,60px)}
@@ -606,8 +610,23 @@ p{margin:0 0 1em}
 .mapa-bloque{display:flex;flex-direction:column;gap:14px}
 .mapa-bloque .mapa{flex:1}
 .grid-contacto>div>.mapa-bloque{margin-top:32px}
-.btn--llegar{align-self:flex-start;min-height:44px;border-color:var(--rojo);background:var(--negro-2);color:#fff}
-.btn--llegar:hover{background:var(--rojo);color:#fff}
+.btn--borde{border-color:var(--rojo);background:var(--negro-2);color:#fff;min-height:44px}
+.btn--borde:hover{background:var(--rojo);color:#fff}
+.btn--llegar{align-self:flex-start}
+/* Botón "Pedir presupuesto" con menú desplegable */
+.menu-wrap{position:relative;display:inline-flex;flex-direction:column}
+.btn--menu .chevron{width:18px;height:18px;transition:transform .2s ease}
+.btn--menu[aria-expanded="true"] .chevron{transform:rotate(180deg)}
+.menu-desplegable{position:absolute;top:calc(100% + 8px);left:0;z-index:40;min-width:100%;padding:6px;
+  background:var(--negro-2);border:1px solid rgba(254,6,20,.5);border-radius:var(--radio-sm);
+  box-shadow:0 14px 34px rgba(0,0,0,.45);opacity:0;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease}
+.menu-desplegable.abierto{opacity:1;transform:none}
+.menu-desplegable.arriba{top:auto;bottom:calc(100% + 8px);transform:translateY(6px)}
+.menu-desplegable.arriba.abierto{transform:none}
+.menu-desplegable a{display:flex;align-items:center;gap:10px;min-height:44px;padding:14px 18px;border-radius:calc(var(--radio-sm) - 4px);
+  font-weight:600;white-space:nowrap;color:#fff;transition:background-color .2s ease,color .2s ease}
+.menu-desplegable a svg{width:20px;height:20px;fill:currentColor;flex:none}
+.menu-desplegable a:hover,.menu-desplegable a:focus-visible{background:var(--gris);color:var(--rojo);outline:0}
 
 form{display:grid;gap:16px}
 .campo{display:grid;gap:7px}
@@ -698,6 +717,7 @@ form{display:grid;gap:16px}
   .grid-contacto{gap:20px}
   .grid-contacto .datos-lista{margin-bottom:20px}
   .grid-contacto .btn{display:flex;width:100%;min-height:52px}
+  .menu-wrap{display:flex}
   .mapa-bloque{gap:20px}
   .grid-contacto>div>.mapa-bloque{margin-top:20px}
   .btn--llegar{align-self:stretch}
@@ -816,6 +836,7 @@ form{display:grid;gap:16px}
 }
 
 @media (prefers-reduced-motion:reduce){
+  .menu-desplegable,.btn--menu .chevron{transition:none}
   .header{transition:none}
   .marquesina-pista{animation:none}
   .gauge-arco{stroke-dashoffset:0}
