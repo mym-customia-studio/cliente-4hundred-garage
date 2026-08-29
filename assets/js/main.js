@@ -22,6 +22,24 @@
     });
   }
 
+  /* ---------- Header: clase .header--scrolled pasados 20px ---------- */
+  var header = document.querySelector('.header');
+  if (header) {
+    var scrolled = null, pedido = false;
+    var pintarHeader = function () {
+      pedido = false;
+      var ahora = window.scrollY > 20;
+      if (ahora !== scrolled) {
+        scrolled = ahora;
+        header.classList.toggle('header--scrolled', ahora);
+      }
+    };
+    window.addEventListener('scroll', function () {
+      if (!pedido) { pedido = true; window.requestAnimationFrame(pintarHeader); }
+    }, { passive: true });
+    pintarHeader();
+  }
+
   /* ---------- Barra de progreso de lectura ---------- */
   var progreso = document.querySelector('.progreso');
   if (progreso) {
