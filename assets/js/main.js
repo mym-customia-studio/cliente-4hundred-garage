@@ -99,6 +99,71 @@
     items.forEach(function (it) { it.addEventListener('click', function () { cerrar(false); }); });
   });
 
+  /* ---------- Parrilla neón: encendido, guiño de faros y "falso contacto" ---------- */
+  var heroParrilla = document.querySelector('.hero');
+  var parrilla = heroParrilla && heroParrilla.querySelector('.hero-parrilla');
+  if (parrilla) {
+    var enPantalla = true, temporizador = null;
+
+    /* Guiño de luces: una vez por entrada, reiniciable sin acumular */
+    var guinar = function () {
+      parrilla.classList.remove('guino');
+      requestAnimationFrame(function () { requestAnimationFrame(function () { parrilla.classList.add('guino'); }); });
+    };
+    if (!sinMovimiento) {
+      parrilla.addEventListener('mouseenter', guinar);
+      parrilla.addEventListener('touchstart', guinar, { passive: true });
+    }
+
+    /* Falso contacto: primer episodio a 0,8-1,5 s del encendido; después intervalo aleatorio de 2 a 5 s, 3 variantes */
+    var chispear = function () {
+      temporizador = null;
+      if (!enPantalla || document.hidden || !parrilla.classList.contains('encendida')) return;
+      parrilla.classList.add(['chispa-a', 'chispa-b', 'chispa-c'][Math.floor(Math.random() * 3)]);
+    };
+    var primeraChispa = true;
+    var programar = function () {
+      if (sinMovimiento || temporizador || !parrilla.classList.contains('encendida')) return;
+      var espera = primeraChispa ? 800 + Math.random() * 700 : 2000 + Math.random() * 3000;
+      primeraChispa = false;
+      temporizador = setTimeout(chispear, espera);
+    };
+    var frenarChispas = function () { if (temporizador) { clearTimeout(temporizador); temporizador = null; } };
+
+    parrilla.addEventListener('animationend', function (e) {
+      if (e.animationName === 'pz-guino' || e.animationName === 'pz-guino-led') parrilla.classList.remove('guino');
+      else if (e.animationName.indexOf('pz-chispa') === 0) {
+        parrilla.classList.remove('chispa-a', 'chispa-b', 'chispa-c');
+        programar();
+      } else if (e.animationName === 'pz-halo-on') {
+        parrilla.classList.add('encendida');
+        programar();
+      } else if (e.animationName === 'pz-barrido') {
+        e.target.classList.add('pz-oculto'); /* sin rastro de la capa del barrido */
+      }
+    });
+    if (sinMovimiento) parrilla.classList.add('encendida');
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) {
+        enPantalla = en[0].isIntersecting;
+        if (enPantalla) programar(); else frenarChispas();
+      }, { threshold: 0 }).observe(heroParrilla);
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) frenarChispas(); else programar();
+    });
+  }
+
+  /* ---------- Botón flotante de WhatsApp: se esconde mientras el footer está en pantalla ---------- */
+  var botonWa = document.querySelector('.wa');
+  var pie = document.querySelector('footer');
+  if (botonWa && pie && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) {
+      botonWa.classList.toggle('wa--oculto', en[0].isIntersecting);
+    }, { threshold: 0 }).observe(pie);
+  }
+
   /* ---------- Barra de progreso de lectura ---------- */
   var progreso = document.querySelector('.progreso');
   if (progreso) {
@@ -216,7 +281,7 @@
 
   /* ---------- Revelado al hacer scroll ---------- */
   /* secciones que se animan sin tocar el HTML */
-  document.querySelectorAll('.franja, .cta, .marquesina, .footer-grid, .hero-int .contenedor')
+  document.querySelectorAll('.franja, .cta, .marquesina, .hero-int .contenedor')
     .forEach(function (el) { el.classList.add('aparece'); });
 
   /* las tarjetas de servicios del inicio se observan de a una,

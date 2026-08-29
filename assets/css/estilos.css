@@ -88,9 +88,6 @@ p{margin:0 0 1em}
 .topbar-datos span{display:inline-flex;align-items:center;gap:7px}
 .topbar-datos svg{width:15px;height:15px;fill:var(--rojo);flex:none}
 .topbar a:hover{color:var(--rojo)}
-.topbar-redes{display:flex;gap:14px}
-.topbar-redes svg{width:17px;height:17px;fill:var(--texto-sec);transition:var(--trans)}
-.topbar-redes a:hover svg{fill:var(--rojo)}
 
 /* ---------- Header ---------- */
 .header{
@@ -176,9 +173,9 @@ p{margin:0 0 1em}
   transform:translateY(115%);animation:hero-subir .9s cubic-bezier(.16,1,.3,1) forwards}
 .hero-nombre .cuatro{background:var(--rojo);color:#fff;font-style:italic;
   padding:.02em .18em .06em;margin-right:.18em;border-radius:.08em;
-  box-shadow:0 14px 44px rgba(254,6,20,.45);animation-delay:.75s}
-.hero-nombre .p2{animation-delay:.9s;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,.6)}
-.hero-nombre .p3{animation-delay:1.05s;color:transparent;-webkit-text-stroke:2px #fff;
+  box-shadow:0 14px 44px rgba(254,6,20,.45);animation-delay:1.3s}
+.hero-nombre .p2{animation-delay:1.45s;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,.6)}
+.hero-nombre .p3{animation-delay:1.6s;color:transparent;-webkit-text-stroke:2px #fff;
   letter-spacing:.08em;font-size:.82em}
 @keyframes hero-subir{to{transform:none}}
 
@@ -206,13 +203,45 @@ p{margin:0 0 1em}
   text-shadow:0 0 10px rgba(254,6,20,.9),0 0 26px rgba(254,6,20,.5);
   box-shadow:0 0 22px rgba(254,6,20,.35),inset 0 0 16px rgba(254,6,20,.16);
   background:rgba(12,12,13,.5);backdrop-filter:blur(6px);
-  opacity:0;animation:sub-neon .9s ease 1.35s forwards}
+  opacity:0;animation:sub-neon .9s ease 1.9s forwards}
 @keyframes sub-neon{0%{opacity:0;text-shadow:none}55%{opacity:.4}62%{opacity:.9}68%{opacity:.35}100%{opacity:1}}
 
 /* Parrilla neón sobre el nombre: se enciende antes que el "4" */
-.hero-parrilla{display:block;align-self:center;width:90%;max-width:100%;height:auto;margin:0 0 8px;
-  opacity:0;animation:parrilla-neon .6s linear forwards}
-@keyframes parrilla-neon{0%{opacity:0}12%{opacity:.85}22%{opacity:.08}38%{opacity:.95}48%{opacity:.2}62%{opacity:1}100%{opacity:1}}
+.hero-parrilla{display:block;align-self:center;width:90%;max-width:100%;height:auto;margin:0 0 8px;overflow:visible}
+/* Encendido tipo tira de LED: parrilla completa apagada (opacidad baja) desde el primer frame */
+.pz-tubo{--on:1;opacity:.22;animation:pz-encendido .4s linear .9s forwards}
+.pz-luz{--on:.95} /* línea de luz: encendida queda en .95, como en el archivo */
+@keyframes pz-encendido{0%{opacity:.22}15%{opacity:var(--on)}25%{opacity:calc(var(--on)*.35)}40%{opacity:var(--on)}55%{opacity:calc(var(--on)*.6)}70%{opacity:var(--on)}100%{opacity:var(--on)}}
+/* Barrido de luz: un segmento corto (pathLength=1) recorre el tubo de punta a punta y sale por el final */
+.pz-barrido{opacity:.9;stroke-dasharray:.10 1;stroke-dashoffset:.10;animation:pz-barrido .9s ease-in forwards}
+.pz-barrido-e{animation-delay:.1s}
+@keyframes pz-barrido{0%{opacity:.9}88%{opacity:.9}100%{stroke-dashoffset:-1;opacity:0}}
+.pz-barrido.pz-oculto{visibility:hidden} /* la pone main.js en animationend: no queda rastro de la capa */
+/* Halo: se enciende con un pulso de escala y queda fijo (el .75 vive en el grupo interno) */
+.pz-halo{--on:1;opacity:0;transform-box:fill-box;transform-origin:center;animation:pz-halo-on .4s ease-in-out .9s forwards}
+@keyframes pz-halo-on{0%{opacity:0;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
+/* Estado estable tras el encendido (clase puesta por main.js): sin animación de fondo, listo para las chispas */
+.hero-parrilla.encendida .pz-tubo,.hero-parrilla.encendida .pz-halo{animation:none;opacity:var(--on)}
+/* Neón con falso contacto: ráfaga de 3-5 golpes irregulares, disparada cada 2,5-6 s por main.js (3 variantes al azar).
+   Aplica a tubo, línea de luz (.pz-luz es .pz-tubo) y halo; los valores son relativos a --on */
+.hero-parrilla.encendida.chispa-a .pz-tubo,.hero-parrilla.encendida.chispa-a .pz-halo{animation:pz-chispa-a .55s linear}
+.hero-parrilla.encendida.chispa-b .pz-tubo,.hero-parrilla.encendida.chispa-b .pz-halo{animation:pz-chispa-b .65s linear}
+.hero-parrilla.encendida.chispa-c .pz-tubo,.hero-parrilla.encendida.chispa-c .pz-halo{animation:pz-chispa-c .45s linear}
+@keyframes pz-chispa-a{0%{opacity:var(--on)}8%{opacity:calc(var(--on)*.2)}14%{opacity:var(--on)}22%{opacity:calc(var(--on)*.35)}30%{opacity:calc(var(--on)*.9)}45%{opacity:calc(var(--on)*.15)}52%{opacity:var(--on)}70%{opacity:calc(var(--on)*.6)}78%{opacity:var(--on)}100%{opacity:var(--on)}}
+@keyframes pz-chispa-b{0%{opacity:var(--on)}6%{opacity:calc(var(--on)*.3)}10%{opacity:calc(var(--on)*.85)}18%{opacity:calc(var(--on)*.15)}26%{opacity:var(--on)}40%{opacity:calc(var(--on)*.25)}47%{opacity:calc(var(--on)*.8)}55%{opacity:calc(var(--on)*.2)}63%{opacity:var(--on)}84%{opacity:calc(var(--on)*.5)}90%{opacity:var(--on)}100%{opacity:var(--on)}}
+@keyframes pz-chispa-c{0%{opacity:var(--on)}12%{opacity:calc(var(--on)*.15)}20%{opacity:var(--on)}34%{opacity:calc(var(--on)*.3)}42%{opacity:calc(var(--on)*.95)}60%{opacity:calc(var(--on)*.2)}68%{opacity:var(--on)}100%{opacity:var(--on)}}
+/* Guiño de faros al pasar el mouse / tocar: dos señas de luces. El grupo queda visible y cada luz anima su propia opacidad
+   (los faros de arriba con scale; los LED del paragolpes con destello más corto y seco, sin scale) */
+.hero-parrilla .faros{opacity:1}
+.hero-parrilla .faro{--fon:1;opacity:0;transform-box:fill-box;transform-origin:center}
+.hero-parrilla .faro--halo{--fon:.55}
+.hero-parrilla .faro--halo.faro--led{--fon:.5}
+.hero-parrilla.guino .faro{animation:pz-guino .55s linear forwards}
+.hero-parrilla.guino .faro--luz:not(.faro--led){animation:pz-guino .55s linear forwards,pz-guino-luz .55s linear}
+.hero-parrilla.guino .faro--led{animation:pz-guino-led .55s linear forwards}
+@keyframes pz-guino{0%{opacity:0}14.5%{opacity:var(--fon)}36%{opacity:0}51%{opacity:var(--fon)}100%{opacity:0}}
+@keyframes pz-guino-luz{0%{transform:scale(1)}14.5%{transform:scale(1.08)}36%{transform:scale(1)}51%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes pz-guino-led{0%{opacity:0}11%{opacity:var(--fon)}27%{opacity:0}36%{opacity:0}47%{opacity:var(--fon)}64%{opacity:0}100%{opacity:0}}
 @media (max-width:820px){.hero-parrilla{width:min(82vw,340px)}}
 
 /* ---------- Marquesina neón ---------- */
@@ -337,11 +366,6 @@ p{margin:0 0 1em}
 .aparece.visible .datos-lista li:nth-child(5),.aparece.visible form .campo:nth-child(5){animation-delay:.4s}
 
 /* Footer: columnas en cascada */
-.footer-grid.aparece>div{opacity:0}
-.footer-grid.aparece.visible>div{opacity:1;animation:sube-suave .7s ease backwards}
-.footer-grid.aparece.visible>div:nth-child(2){animation-delay:.12s}
-.footer-grid.aparece.visible>div:nth-child(3){animation-delay:.24s}
-.footer-grid.aparece.visible>div:nth-child(4){animation-delay:.36s}
 
 /* Carrusel y mapa */
 .carrusel.aparece{opacity:0;transform:translateY(40px) scale(.97)}
@@ -662,15 +686,17 @@ form{display:grid;gap:16px}
 .hero-int p{max-width:60ch;color:var(--texto-sec);margin:0}
 
 /* ---------- Footer ---------- */
-.footer{background:var(--negro-2);border-top:1px solid var(--gris-linea);padding-top:64px}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:36px;padding-bottom:44px}
-.footer h4{font-size:.82rem;font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:18px}
-.footer p,.footer li{color:var(--texto-sec);font-size:.93rem}
-.footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-.footer a:hover{color:var(--rojo)}
-.footer .logo{margin-bottom:18px}
-.footer-legal{border-top:1px solid var(--gris-linea);padding:20px 0;font-size:.83rem;color:var(--texto-sec);display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+/* Footer mínimo: logo · redes · legal en una sola franja */
+.footer{background:var(--negro-2);border-top:1px solid var(--gris-linea);padding:22px 0}
+.footer-fila{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.footer .logo svg{height:34px}
+.footer-redes{display:flex;gap:6px}
+.footer-redes a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;transition:var(--trans)}
+.footer-redes svg{width:20px;height:20px;fill:var(--texto-sec);transition:var(--trans)}
+.footer-redes a:hover svg,.footer-redes a:focus-visible svg{fill:var(--rojo)}
+.footer-legal{margin:0;font-size:.8rem;color:var(--texto-sec);text-align:right}
 .footer-legal a{color:var(--rojo)}
+.footer-legal a:hover{text-decoration:underline}
 
 /* ---------- WhatsApp flotante ---------- */
 .wa{
@@ -683,6 +709,9 @@ form{display:grid;gap:16px}
   box-shadow:0 0 30px rgba(254,6,20,.85),0 0 70px rgba(254,6,20,.35);
   opacity:.35;animation:wa-late 2.6s ease-in-out infinite;will-change:opacity}
 .wa:hover{transform:scale(1.08);background:var(--rojo)}
+/* Oculto mientras el footer está en pantalla (clase puesta por main.js) */
+.wa{transition:opacity .25s ease,transform .25s ease,background-color .25s ease}
+.wa--oculto{opacity:0;transform:translateY(12px) scale(.9);pointer-events:none}
 .wa svg{width:30px;height:30px;fill:var(--rojo);filter:drop-shadow(0 0 6px rgba(254,6,20,.9));transition:var(--trans)}
 .wa:hover svg{fill:#fff;filter:none}
 @keyframes wa-late{0%,100%{opacity:.3}50%{opacity:1}}
@@ -707,12 +736,18 @@ form{display:grid;gap:16px}
   .btn--llegar{align-self:center}
   .partido--inv .partido-txt{order:0}
   .franja .contenedor{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:820px){
   /* backdrop-filter convierte al header en bloque contenedor de los fixed: lo apagamos en mobile */
   .header{backdrop-filter:none;background:var(--negro)}
   .header--scrolled{background:rgba(12,12,13,.88)}
+  /* Footer apilado y centrado */
+  .footer{padding:16px 0 calc(76px + env(safe-area-inset-bottom))}
+  .footer-fila{flex-direction:column;gap:6px}
+  .footer .logo svg{height:30px}
+  .footer-legal{text-align:center;font-size:.78rem;line-height:1.4}
+  .footer-legal>span{display:block}
+  .footer-sep{display:none}
   /* Contacto apilado: botones a ancho completo y un solo gap entre bloques */
   .grid-contacto{gap:20px}
   .grid-contacto .datos-lista{margin-bottom:20px}
@@ -740,7 +775,6 @@ form{display:grid;gap:16px}
   .franja .contenedor{grid-template-columns:1fr}
   .grid-mini{grid-template-columns:1fr}
   .lista-check,.doble{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
   .hero-datos{gap:14px 22px}
 }
 
@@ -836,6 +870,7 @@ form{display:grid;gap:16px}
 }
 
 @media (prefers-reduced-motion:reduce){
+  .wa{transition:none}
   .menu-desplegable,.btn--menu .chevron{transition:none}
   .header{transition:none}
   .marquesina-pista{animation:none}
@@ -844,13 +879,16 @@ form{display:grid;gap:16px}
   .aparece h1,.aparece h2{transform:none;opacity:1}
   .hero-nombre .cuatro,.hero-nombre .palabra{transform:none;animation:none}
   .hero-sub{opacity:1;animation:none}
-  .hero-parrilla{opacity:1;animation:none}
+  .pz-tubo,.pz-barrido,.pz-halo,.hero-parrilla .faro{animation:none!important}
+  .pz-tubo,.pz-halo{opacity:var(--on,1)}
+  .hero-parrilla .faro{opacity:0}
+  .pz-barrido{opacity:0;visibility:hidden}
   .aparece .tarjeta,.aparece .mini,.aparece .partido-img,.aparece .partido-txt{opacity:1}
   .slide{transform:none;opacity:1}
   .show-slide.activo .show-frente{animation:none}
   .franja.aparece,.franja.aparece div,.cta.aparece .contenedor>*,.marquesina.aparece,
   .aparece .resena,.aparece .galeria figure,.aparece .faq details,.aparece .datos-lista li,
-  .aparece .paso,.aparece form .campo,.footer-grid.aparece>div,.carrusel.aparece,.aparece .mapa{opacity:1;transform:none}
+  .aparece .paso,.aparece form .campo,.carrusel.aparece,.aparece .mapa{opacity:1;transform:none}
   .cta.aparece{opacity:1}
   .t-solo,#servicios .aparece h2,#servicios .aparece .etiqueta{opacity:1}
   .aparece .partido-txt .etiqueta,.aparece .partido-txt h2,.aparece .partido-txt>p,
