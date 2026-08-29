@@ -304,16 +304,19 @@
 
   var animables = document.querySelectorAll('.aparece, .gauge, .t-solo, [data-contador]');
   if ('IntersectionObserver' in window && animables.length) {
-    var obs = new IntersectionObserver(function (entradas) {
+    var revelar = function (entradas, observador) {
       entradas.forEach(function (en) {
         if (!en.isIntersecting) return;
         var el = en.target;
         el.classList.add('visible');
         if (el.hasAttribute('data-contador')) contar(el);
-        obs.unobserve(el);
+        observador.unobserve(el);
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -60px' });
-    animables.forEach(function (el) { obs.observe(el); });
+    };
+    var obs = new IntersectionObserver(revelar, { threshold: 0.15, rootMargin: '0px 0px -60px' });
+    /* Los bloques de servicio (.partido) se disparan uno por uno, con un cuarto del bloque en pantalla */
+    var obsPartido = new IntersectionObserver(revelar, { threshold: 0.25 });
+    animables.forEach(function (el) { (el.classList.contains('partido') ? obsPartido : obs).observe(el); });
   } else {
     animables.forEach(function (el) {
       el.classList.add('visible');
