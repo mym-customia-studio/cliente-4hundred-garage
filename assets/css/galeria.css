@@ -1,0 +1,67 @@
+/* 4 Hundred Garage — estilos solo de galeria.html (comparador antes/después + bloque Instagram) */
+
+/* ---------- Galería: comparadores antes/después a todo el ancho ---------- */
+.lista-comparar{display:flex;flex-direction:column;gap:56px;max-width:1200px;margin:0 auto}
+html:has(.lista-comparar){scroll-snap-type:y proximity} /* el snap vive en el elemento que scrollea (la página) */
+.comparar{margin:0;scroll-snap-align:start;scroll-margin-top:calc(var(--alto-header) + 16px)}
+.comparar-marco{--pos:50%;position:relative;width:100%;aspect-ratio:16/9;max-height:680px;overflow:hidden;border-radius:var(--radio);
+  background:var(--negro-2);border:1px solid var(--gris-linea);box-shadow:var(--sombra);user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.comparar-marco picture,.comparar-marco img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.comparar-marco img{object-fit:cover}
+
+.comparar-despues{clip-path:inset(0 0 0 var(--pos))}
+.comparar-tag{position:absolute;top:18px;z-index:2;padding:7px 16px;border-radius:100px;font-size:.78rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;background:rgba(12,12,13,.72);color:#fff;pointer-events:none}
+.comparar-tag--antes{left:18px}
+.comparar-tag--despues{right:18px;background:var(--rojo)}
+.comparar-linea{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;background:var(--rojo);transform:translateX(-50%);z-index:2;
+  box-shadow:0 0 12px rgba(254,6,20,.8);pointer-events:none}
+.comparar-boton{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;
+  background:var(--rojo);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.35rem;letter-spacing:.1em;
+  box-shadow:0 0 22px rgba(254,6,20,.7);transition:transform .2s ease}
+.comparar-marco:hover .comparar-boton,.comparar-rango:focus-visible~.comparar-linea .comparar-boton{transform:translate(-50%,-50%) scale(1.1)}
+/* El control ocupa toda la tarjeta: arrastre horizontal para comparar, el scroll vertical pasa (pan-y) */
+.comparar-rango{position:absolute;inset:0;z-index:3;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:pan-y;
+  -webkit-appearance:none;appearance:none;background:transparent}
+.comparar-rango::-webkit-slider-thumb{-webkit-appearance:none;width:56px;height:100%}
+.comparar-rango::-moz-range-thumb{width:56px;height:100%;border:0;background:transparent}
+.comparar-rango:focus-visible~.comparar-linea{box-shadow:0 0 0 3px #fff,0 0 14px rgba(254,6,20,.9)}
+.comparar figcaption{display:flex;align-items:center;gap:14px;margin-top:16px;font-size:1.05rem;font-weight:600;color:#fff}
+.comparar figcaption::before{content:"";flex:none;width:34px;height:3px;background:var(--rojo)}
+.comparar-marco.demo .comparar-despues,.comparar-marco.demo .comparar-linea{transition:clip-path 2.2s cubic-bezier(.45,0,.2,1),left 2.2s cubic-bezier(.45,0,.2,1)}
+/* Entrada individual: la foto entra con barrido diagonal y el pie aparece después */
+.comparar.aparece{opacity:1;transform:none;transition:none}
+.comparar.aparece .comparar-marco,.comparar.aparece figcaption{opacity:0}
+.comparar.aparece.visible .comparar-marco{opacity:1;animation:img-barrido .95s cubic-bezier(.16,1,.3,1) both}
+.comparar.aparece.visible figcaption{opacity:1;animation:sube-suave .6s ease .5s both}
+
+/* ---------- Bloque Instagram ---------- */
+.insta{background:var(--negro-2);padding:clamp(56px,8vw,110px) 0;text-align:center}
+.insta-caja{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:620px;padding:clamp(34px,5vw,56px) clamp(22px,4vw,48px);
+  border:1px solid rgba(254,6,20,.65);border-radius:var(--radio);background:rgba(12,12,13,.5);
+  box-shadow:0 0 26px rgba(254,6,20,.35),inset 0 0 18px rgba(254,6,20,.14)}
+.insta-icono{width:64px;height:64px;fill:var(--rojo);filter:drop-shadow(0 0 12px rgba(254,6,20,.8))}
+.insta-usuario{margin:0;font-size:clamp(1.6rem,4vw,2.4rem);text-transform:none;letter-spacing:-.02em;text-shadow:0 0 14px rgba(254,6,20,.6)}
+.insta-frase{margin:0 0 10px;color:var(--texto-sec);font-size:1.05rem}
+.btn--grande{min-height:56px;padding:16px 34px;font-size:1rem}
+/* Encendido neón del borde al entrar */
+@keyframes insta-neon{0%{opacity:0;transform:translateY(18px)}45%{opacity:.45}55%{opacity:.95}65%{opacity:.4}100%{opacity:1;transform:none}}
+.insta.aparece{opacity:1;transform:none;transition:none}
+.insta.aparece .insta-caja{opacity:0}
+.insta.aparece.visible .insta-caja{opacity:1;animation:insta-neon 1s ease both}
+
+@media (max-width:600px){
+  .lista-comparar{gap:40px}
+  .comparar-marco{aspect-ratio:4/5;max-height:70vh}
+  .comparar-tag{top:12px;padding:5px 12px;font-size:.68rem}
+  .comparar-tag--antes{left:12px}
+  .comparar-tag--despues{right:12px}
+  .comparar-boton{width:48px;height:48px;font-size:1.1rem}
+  .insta .btn--grande{width:100%}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html:has(.lista-comparar){scroll-snap-type:none}
+  .comparar.aparece .comparar-marco,.comparar.aparece figcaption,.insta.aparece .insta-caja{opacity:1;animation:none}
+  .comparar-marco.demo .comparar-despues,.comparar-marco.demo .comparar-linea,.comparar-boton{transition:none}
+}

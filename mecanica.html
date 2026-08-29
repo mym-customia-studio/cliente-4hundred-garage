@@ -11,10 +11,9 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <link rel="icon" href="assets/img/isotipo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,600;1,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/estilos.css?v=20260829">
+<link rel="preload" href="assets/fonts/poppins-800i.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/estilos.min.css?v=20260829b">
 
 </head>
 <body>
@@ -67,11 +66,11 @@
       </ul>
       <a class="btn btn--rojo" href="https://wa.me/5491159123836?text=Hola%204%20Hundred%20Garage%2C%20quiero%20pedir%20un%20turno" target="_blank" rel="noopener">Consultar precio</a>
     </div>
-    <figure class="partido-img"><img src="assets/img/aceite.jpg" width="462" height="474" alt="Cambio de aceite de motor" loading="lazy"></figure>
+    <figure class="partido-img"><picture><source type="image/webp" srcset="assets/img/aceite.webp"><img src="assets/img/aceite.jpg" width="462" height="474" alt="Cambio de aceite de motor" fetchpriority="high"></picture></figure>
   </div>
 </section>
 
-<section class="seccion" id="bujias" style="background:var(--negro-2)">
+<section class="seccion seccion--alt" id="bujias">
   <div class="contenedor partido partido--inv aparece">
     <div class="partido-txt">
       <h2>Cambio de bujías</h2>
@@ -84,7 +83,7 @@
       </ul>
       <a class="btn btn--rojo" href="https://wa.me/5491159123836?text=Hola%204%20Hundred%20Garage%2C%20quiero%20pedir%20un%20turno" target="_blank" rel="noopener">Consultar precio</a>
     </div>
-    <figure class="partido-img"><img src="assets/img/bujias.jpg" width="465" height="544" alt="Cambio de bujías" loading="lazy"></figure>
+    <figure class="partido-img"><picture><source type="image/webp" srcset="assets/img/bujias.webp"><img src="assets/img/bujias.jpg" width="465" height="544" alt="Cambio de bujías" loading="lazy"></picture></figure>
   </div>
 </section>
 
@@ -101,11 +100,11 @@
       </ul>
       <a class="btn btn--rojo" href="https://wa.me/5491159123836?text=Hola%204%20Hundred%20Garage%2C%20quiero%20pedir%20un%20turno" target="_blank" rel="noopener">Consultar precio</a>
     </div>
-    <figure class="partido-img"><img src="assets/img/pastillas-freno.jpg" width="496" height="487" alt="Cambio de pastillas de freno" loading="lazy"></figure>
+    <figure class="partido-img"><picture><source type="image/webp" srcset="assets/img/pastillas-freno.webp"><img src="assets/img/pastillas-freno.jpg" width="496" height="487" alt="Cambio de pastillas de freno" loading="lazy"></picture></figure>
   </div>
 </section>
 
-<section class="seccion" id="mantenimiento" style="background:var(--negro-2)">
+<section class="seccion seccion--alt" id="mantenimiento">
   <div class="contenedor partido partido--inv aparece">
     <div class="partido-txt">
       <h2>Mantenimiento preventivo</h2>
@@ -118,14 +117,14 @@
       </ul>
       <a class="btn btn--rojo" href="https://wa.me/5491159123836?text=Hola%204%20Hundred%20Garage%2C%20quiero%20pedir%20un%20turno" target="_blank" rel="noopener">Consultar precio</a>
     </div>
-    <figure class="partido-img"><img src="assets/img/mantenimiento.jpg" width="482" height="602" alt="Mantenimiento preventivo del motor" loading="lazy"></figure>
+    <figure class="partido-img"><picture><source type="image/webp" srcset="assets/img/mantenimiento.webp"><img src="assets/img/mantenimiento.jpg" width="482" height="602" alt="Mantenimiento preventivo del motor" loading="lazy"></picture></figure>
   </div>
 </section>
 
-<section class="seccion" style="background:var(--negro-2)">
+<section class="seccion seccion--alt">
   <div class="contenedor">
     <div class="centrado aparece"><span class="etiqueta">Preguntas frecuentes</span><h2>Dudas comunes</h2></div>
-    <div class="faq aparece" style="margin-top:44px">
+    <div class="faq aparece sep-44">
     <details><summary>¿Necesito turno?</summary><p>Conviene. Escribinos por WhatsApp y coordinamos el día y horario que te quede cómodo.</p></details>
     <details><summary>¿Los repuestos los ponen ustedes?</summary><p>Sí, trabajamos con primeras marcas. Si preferís traer el repuesto, también lo colocamos.</p></details>
     <details><summary>¿Hacen todo tipo de mecánica?</summary><p>Nos enfocamos en mantenimiento y mecánica ligera. Si tu auto necesita algo más complejo, te lo decimos de entrada y te orientamos.</p></details>
@@ -135,7 +134,7 @@
 </section>
 
 <div class="marquesina marquesina--neon marquesina--logos" aria-hidden="true">
-  <div class="marquesina-pista"><span class="marca"><img src="assets/img/marcas/liqui-moly.png" alt="Liqui Moly" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Liqui Moly</b></span><span class="marca"><img src="assets/img/marcas/vonixx.png" alt="Vonixx" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Vonixx</b></span><span class="marca"><img src="assets/img/marcas/3m.png" alt="3M" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>3M</b></span><span class="marca"><img src="assets/img/marcas/meguiars.png" alt="Meguiar's" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Meguiar's</b></span><span class="marca"><img src="assets/img/marcas/sonax.png" alt="Sonax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Sonax</b></span><span class="marca"><img src="assets/img/marcas/menzerna.png" alt="Menzerna" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Menzerna</b></span><span class="marca"><img src="assets/img/marcas/ternnova.png" alt="Ternnova" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Ternnova</b></span><span class="marca"><img src="assets/img/marcas/turtle-wax.png" alt="Turtle Wax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Turtle Wax</b></span><span class="marca"><img src="assets/img/marcas/liqui-moly.png" alt="Liqui Moly" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Liqui Moly</b></span><span class="marca"><img src="assets/img/marcas/vonixx.png" alt="Vonixx" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Vonixx</b></span><span class="marca"><img src="assets/img/marcas/3m.png" alt="3M" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>3M</b></span><span class="marca"><img src="assets/img/marcas/meguiars.png" alt="Meguiar's" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Meguiar's</b></span><span class="marca"><img src="assets/img/marcas/sonax.png" alt="Sonax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Sonax</b></span><span class="marca"><img src="assets/img/marcas/menzerna.png" alt="Menzerna" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Menzerna</b></span><span class="marca"><img src="assets/img/marcas/ternnova.png" alt="Ternnova" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Ternnova</b></span><span class="marca"><img src="assets/img/marcas/turtle-wax.png" alt="Turtle Wax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Turtle Wax</b></span></div>
+  <div class="marquesina-pista"><span class="marca"><b>Liqui Moly</b></span><span class="marca"><b>Vonixx</b></span><span class="marca"><b>3M</b></span><span class="marca"><b>Meguiar's</b></span><span class="marca"><b>Sonax</b></span><span class="marca"><b>Menzerna</b></span><span class="marca"><b>Ternnova</b></span><span class="marca"><b>Turtle Wax</b></span><span class="marca"><b>Liqui Moly</b></span><span class="marca"><b>Vonixx</b></span><span class="marca"><b>3M</b></span><span class="marca"><b>Meguiar's</b></span><span class="marca"><b>Sonax</b></span><span class="marca"><b>Menzerna</b></span><span class="marca"><b>Ternnova</b></span><span class="marca"><b>Turtle Wax</b></span></div>
 </div>
 
 <section class="cta">

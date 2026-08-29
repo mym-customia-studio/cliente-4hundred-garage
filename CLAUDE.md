@@ -56,6 +56,16 @@ Objetivo PageSpeed: **100** en Accesibilidad, Buenas prácticas y SEO; **90+** e
 - Nada puede desbordar horizontalmente.
 - Áreas táctiles de al menos **44×44 px**.
 
+## CSS minificado (obligatorio tras cada cambio de CSS)
+
+Las páginas cargan `assets/css/estilos.min.css` (y `galeria.min.css` solo en `galeria.html`). Se editan siempre los `.css` fuente y después se regeneran los `.min.css` con:
+
+```bash
+node herramientas/minificar-css.js
+```
+
+Si cambia el CSS, subir el `?v=` de los `<link>` en las 7 páginas para romper la caché. Las fuentes Poppins viven en `assets/fonts/` (woff2, subset latin) con `@font-face` al inicio de `estilos.css`; no volver a Google Fonts.
+
 ## Estructura rápida
 
 ```

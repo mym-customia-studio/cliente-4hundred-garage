@@ -11,10 +11,9 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <link rel="icon" href="assets/img/isotipo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,600;1,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/estilos.css?v=20260829">
+<link rel="preload" href="assets/fonts/poppins-800i.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/estilos.min.css?v=20260829b">
 
 </head>
 <body>
@@ -95,7 +94,7 @@
   </div>
 </section>
 
-<section class="seccion" style="background:var(--negro-2)">
+<section class="seccion seccion--alt">
   <div class="contenedor partido partido--inv aparece" id="accesorios">
     <div class="partido-txt">
       <h2>Accesorios para tu auto</h2>
@@ -112,10 +111,10 @@
   </div>
 </section>
 
-<section class="seccion" style="background:var(--negro-2)">
+<section class="seccion seccion--alt">
   <div class="contenedor">
     <div class="centrado aparece"><span class="etiqueta">Preguntas frecuentes</span><h2>Dudas comunes</h2></div>
-    <div class="faq aparece" style="margin-top:44px">
+    <div class="faq aparece sep-44">
     <details><summary>¿Qué porcentaje de polarizado puedo poner?</summary><p>Te asesoramos según lo permitido para circular y según lo que busques: privacidad, control de calor o ambas cosas.</p></details>
     <!-- ▼ CONFIRMAR CON CLIENTE: preguntas nuevas (reemplazan a las de ploteo, que pasaron a ploteo.html) -->
     <details><summary>¿Cuánto tarda el polarizado?</summary><p>Un auto completo se hace en el día. Te recomendamos no bajar los vidrios durante las primeras 48 horas para que la película asiente bien.</p></details>
@@ -126,7 +125,7 @@
 </section>
 
 <div class="marquesina marquesina--neon marquesina--logos" aria-hidden="true">
-  <div class="marquesina-pista"><span class="marca"><img src="assets/img/marcas/liqui-moly.png" alt="Liqui Moly" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Liqui Moly</b></span><span class="marca"><img src="assets/img/marcas/vonixx.png" alt="Vonixx" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Vonixx</b></span><span class="marca"><img src="assets/img/marcas/3m.png" alt="3M" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>3M</b></span><span class="marca"><img src="assets/img/marcas/meguiars.png" alt="Meguiar's" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Meguiar's</b></span><span class="marca"><img src="assets/img/marcas/sonax.png" alt="Sonax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Sonax</b></span><span class="marca"><img src="assets/img/marcas/menzerna.png" alt="Menzerna" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Menzerna</b></span><span class="marca"><img src="assets/img/marcas/ternnova.png" alt="Ternnova" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Ternnova</b></span><span class="marca"><img src="assets/img/marcas/turtle-wax.png" alt="Turtle Wax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Turtle Wax</b></span><span class="marca"><img src="assets/img/marcas/liqui-moly.png" alt="Liqui Moly" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Liqui Moly</b></span><span class="marca"><img src="assets/img/marcas/vonixx.png" alt="Vonixx" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Vonixx</b></span><span class="marca"><img src="assets/img/marcas/3m.png" alt="3M" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>3M</b></span><span class="marca"><img src="assets/img/marcas/meguiars.png" alt="Meguiar's" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Meguiar's</b></span><span class="marca"><img src="assets/img/marcas/sonax.png" alt="Sonax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Sonax</b></span><span class="marca"><img src="assets/img/marcas/menzerna.png" alt="Menzerna" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Menzerna</b></span><span class="marca"><img src="assets/img/marcas/ternnova.png" alt="Ternnova" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Ternnova</b></span><span class="marca"><img src="assets/img/marcas/turtle-wax.png" alt="Turtle Wax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Turtle Wax</b></span></div>
+  <div class="marquesina-pista"><span class="marca"><b>Liqui Moly</b></span><span class="marca"><b>Vonixx</b></span><span class="marca"><b>3M</b></span><span class="marca"><b>Meguiar's</b></span><span class="marca"><b>Sonax</b></span><span class="marca"><b>Menzerna</b></span><span class="marca"><b>Ternnova</b></span><span class="marca"><b>Turtle Wax</b></span><span class="marca"><b>Liqui Moly</b></span><span class="marca"><b>Vonixx</b></span><span class="marca"><b>3M</b></span><span class="marca"><b>Meguiar's</b></span><span class="marca"><b>Sonax</b></span><span class="marca"><b>Menzerna</b></span><span class="marca"><b>Ternnova</b></span><span class="marca"><b>Turtle Wax</b></span></div>
 </div>
 
 <section class="cta">

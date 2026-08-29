@@ -11,10 +11,10 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <link rel="icon" href="assets/img/isotipo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,600;1,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/estilos.css?v=20260829">
+<link rel="preload" as="image" href="assets/img/hero-poster.webp" fetchpriority="high">
+<link rel="preload" href="assets/fonts/poppins-800i.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/estilos.min.css?v=20260829b">
 
 </head>
 <body>
@@ -49,9 +49,7 @@
 <!-- ===== Hero ===== -->
 <section class="hero hero--video">
   <div class="hero-fondo" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="metadata" poster="assets/img/hero-poster.jpg">
-      <source src="assets/video/hero.mp4" type="video/mp4">
-    </video>
+    <video class="video-diferido" autoplay muted loop playsinline preload="none" poster="assets/img/hero-poster.webp" data-src="assets/video/hero.mp4"></video>
   </div>
   <span class="hero-luz" aria-hidden="true"></span>
   <canvas class="hero-lineas" aria-hidden="true"></canvas>
@@ -128,7 +126,7 @@
       <span class="etiqueta">Nuestros servicios</span>
       <h2>Todo lo que tu auto<br>necesita, en un solo lugar</h2>
     </div>
-    <div class="grid-servicios aparece" style="margin-top:46px">
+    <div class="grid-servicios aparece sep-46">
 
       <a class="tarjeta" href="detailing.html">
         <div class="tarjeta-img"><picture><source type="image/webp" srcset="assets/img/servicio-detailing.webp"><img src="assets/img/servicio-detailing.jpg" alt="Limpieza de parrilla con pincel de detailing" width="1200" height="900" loading="lazy"></picture></div>
@@ -173,9 +171,7 @@
 <!-- ===== Qué es el detailing ===== -->
 <section class="seccion banda-video">
   <div class="banda-fondo" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="metadata" poster="assets/img/detailing-poster.jpg">
-      <source src="assets/video/detailing.mp4" type="video/mp4">
-    </video>
+    <video class="video-diferido" autoplay muted loop playsinline preload="none" poster="assets/img/detailing-poster.webp" data-src="assets/video/detailing.mp4" data-solo-pc></video>
   </div>
   <div class="contenedor aparece">
     <div class="partido-txt banda-centro">
@@ -202,7 +198,7 @@
       <span class="etiqueta">También hacemos</span>
       <h2>Servicios complementarios</h2>
     </div>
-    <div class="grid-mini aparece" style="margin-top:46px">
+    <div class="grid-mini aparece sep-46">
       <a class="mini" href="detailing.html#opticas" aria-label="Pulido de ópticas: ver en Detailing"><span class="mini-num">01</span><h3>Pulido de ópticas</h3><p>Recuperamos la transparencia y el brillo original de tus faros. Más luz, más seguridad.</p></a>
       <a class="mini" href="estetica.html#luces" aria-label="Cambio de luces: ver en Estética"><span class="mini-num">02</span><h3>Cambio de luces</h3><p>Instalación de LED y halógenas de mayor rendimiento, con regulación correcta del haz.</p></a>
       <a class="mini" href="detailing.html#volante" aria-label="Restauración de volante: ver en Detailing"><span class="mini-num">03</span><h3>Restauración de volante</h3><p>Devolvemos la textura y el color al volante desgastado por el uso.</p></a>
@@ -215,7 +211,7 @@
 
 
 <div class="marquesina marquesina--neon marquesina--logos" aria-hidden="true">
-  <div class="marquesina-pista"><span class="marca"><img src="assets/img/marcas/liqui-moly.png" alt="Liqui Moly" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Liqui Moly</b></span><span class="marca"><img src="assets/img/marcas/vonixx.png" alt="Vonixx" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Vonixx</b></span><span class="marca"><img src="assets/img/marcas/3m.png" alt="3M" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>3M</b></span><span class="marca"><img src="assets/img/marcas/meguiars.png" alt="Meguiar's" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Meguiar's</b></span><span class="marca"><img src="assets/img/marcas/sonax.png" alt="Sonax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Sonax</b></span><span class="marca"><img src="assets/img/marcas/menzerna.png" alt="Menzerna" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Menzerna</b></span><span class="marca"><img src="assets/img/marcas/ternnova.png" alt="Ternnova" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Ternnova</b></span><span class="marca"><img src="assets/img/marcas/turtle-wax.png" alt="Turtle Wax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Turtle Wax</b></span><span class="marca"><img src="assets/img/marcas/liqui-moly.png" alt="Liqui Moly" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Liqui Moly</b></span><span class="marca"><img src="assets/img/marcas/vonixx.png" alt="Vonixx" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Vonixx</b></span><span class="marca"><img src="assets/img/marcas/3m.png" alt="3M" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>3M</b></span><span class="marca"><img src="assets/img/marcas/meguiars.png" alt="Meguiar's" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Meguiar's</b></span><span class="marca"><img src="assets/img/marcas/sonax.png" alt="Sonax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Sonax</b></span><span class="marca"><img src="assets/img/marcas/menzerna.png" alt="Menzerna" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Menzerna</b></span><span class="marca"><img src="assets/img/marcas/ternnova.png" alt="Ternnova" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Ternnova</b></span><span class="marca"><img src="assets/img/marcas/turtle-wax.png" alt="Turtle Wax" loading="lazy" onload="this.parentNode.classList.add(&quot;con-logo&quot;)" onerror="this.remove()"><b>Turtle Wax</b></span></div>
+  <div class="marquesina-pista"><span class="marca"><b>Liqui Moly</b></span><span class="marca"><b>Vonixx</b></span><span class="marca"><b>3M</b></span><span class="marca"><b>Meguiar's</b></span><span class="marca"><b>Sonax</b></span><span class="marca"><b>Menzerna</b></span><span class="marca"><b>Ternnova</b></span><span class="marca"><b>Turtle Wax</b></span><span class="marca"><b>Liqui Moly</b></span><span class="marca"><b>Vonixx</b></span><span class="marca"><b>3M</b></span><span class="marca"><b>Meguiar's</b></span><span class="marca"><b>Sonax</b></span><span class="marca"><b>Menzerna</b></span><span class="marca"><b>Ternnova</b></span><span class="marca"><b>Turtle Wax</b></span></div>
 </div>
 
 <section class="cta">
@@ -234,7 +230,7 @@
       <span class="etiqueta">Nuestro trabajo</span>
       <h2>Últimos trabajos</h2>
     </div>
-    <div class="show aparece" data-show style="margin-top:46px">
+    <div class="show aparece sep-46" data-show>
       <div class="show-marco">
       <figure class="show-slide activo">
         <img class="show-fondo" src="assets/img/detailing-rojo.jpg" width="469" height="577" alt="" aria-hidden="true">
@@ -279,21 +275,21 @@
       </div>
       <button class="show-btn show-prev" type="button" aria-label="Trabajo anterior">‹</button>
       <button class="show-btn show-next" type="button" aria-label="Trabajo siguiente">›</button>
-      <div class="show-puntos" role="tablist"></div>
+      <div class="show-puntos"></div>
     </div>
-    <p class="centrado" style="margin-top:34px"><a class="btn btn--linea" href="galeria.html">Ver toda la galería</a></p>
+    <p class="centrado sep-34"><a class="btn btn--linea" href="galeria.html">Ver toda la galería</a></p>
   </div>
 </section>
 
 <!-- ===== Reseñas ===== -->
-<section class="seccion" style="background:var(--negro-2)">
+<section class="seccion seccion--alt">
   <div class="contenedor">
     <div class="centrado aparece">
       <span class="etiqueta">Reseñas</span>
       <h2>Lo que dicen<br>nuestros clientes</h2>
-      <p style="color:var(--texto-sec)"><span class="estrellas">★★★★★</span> 5.0 sobre 5 en Google</p>
+      <p class="texto-sec"><span class="estrellas">★★★★★</span> 5.0 sobre 5 en Google</p>
     </div>
-    <div class="grid-resenas aparece" style="margin-top:46px">
+    <div class="grid-resenas aparece sep-46">
       <!-- ▼ RESEÑA DE MUESTRA — reemplazar por reseña real -->
       <div class="resena">
         <div class="estrellas">★★★★★</div>
@@ -325,10 +321,10 @@
         <li><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg><div><strong>Email</strong><a href="mailto:contacto@4hundredgarage.com">contacto@4hundredgarage.com</a></div></li>
       </ul>
       <div class="menu-wrap">
-        <button class="btn btn--rojo btn--menu" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="menu-presupuesto">Pedir presupuesto <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5 5.5 9l1.4-1.4 5.1 5.1 5.1-5.1L18.5 9z"/></svg></button>
-        <div id="menu-presupuesto" class="menu-desplegable" role="menu" aria-label="Elegí cómo pedir el presupuesto" hidden>
-          <a role="menuitem" href="https://wa.me/5491159123836?text=Hola%204%20Hundred%20Garage%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1s-.8 1-.9 1.2c-.2.2-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.6.3-.5v-.5l-.9-2.2c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.3 5.3 4.6.7.3 1.3.5 1.8.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> Por WhatsApp</a>
-          <a role="menuitem" href="mailto:contacto@4hundredgarage.com?subject=Pedido%20de%20presupuesto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg> Por email</a>
+        <button class="btn btn--rojo btn--menu" type="button" aria-expanded="false" aria-controls="menu-presupuesto">Pedir presupuesto <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5 5.5 9l1.4-1.4 5.1 5.1 5.1-5.1L18.5 9z"/></svg></button>
+        <div id="menu-presupuesto" class="menu-desplegable" hidden>
+          <a href="https://wa.me/5491159123836?text=Hola%204%20Hundred%20Garage%2C%20quiero%20pedir%20un%20presupuesto" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1s-.8 1-.9 1.2c-.2.2-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.6.3-.5v-.5l-.9-2.2c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.3 5.3 4.6.7.3 1.3.5 1.8.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg> Por WhatsApp</a>
+          <a href="mailto:contacto@4hundredgarage.com?subject=Pedido%20de%20presupuesto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg> Por email</a>
         </div>
       </div>
     </div>
