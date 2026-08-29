@@ -596,6 +596,11 @@ p{margin:0 0 1em}
 .datos-lista a:hover{color:var(--rojo)}
 .mapa{border-radius:var(--radio);overflow:hidden;border:1px solid var(--gris-linea);min-height:280px}
 .mapa iframe{width:100%;height:100%;min-height:280px;border:0;display:block;filter:grayscale(1) invert(.9) contrast(.85)}
+.mapa-bloque{display:flex;flex-direction:column;gap:14px}
+.mapa-bloque .mapa{flex:1}
+.grid-contacto>div>.mapa-bloque{margin-top:32px}
+.btn--llegar{align-self:flex-start;min-height:44px;border-color:var(--rojo);background:var(--negro-2);color:#fff}
+.btn--llegar:hover{background:var(--rojo);color:#fff}
 
 form{display:grid;gap:16px}
 .campo{display:grid;gap:7px}
@@ -672,6 +677,7 @@ form{display:grid;gap:16px}
   .hero .contenedor{grid-template-columns:1fr}
   .hero-figura{order:-1;max-width:420px}
   .partido,.grid-contacto{grid-template-columns:1fr}
+  .btn--llegar{align-self:center}
   .partido--inv .partido-txt{order:0}
   .franja .contenedor{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
@@ -680,6 +686,13 @@ form{display:grid;gap:16px}
   /* backdrop-filter convierte al header en bloque contenedor de los fixed: lo apagamos en mobile */
   .header{backdrop-filter:none;background:var(--negro)}
   .header--scrolled{background:rgba(12,12,13,.88)}
+  /* Contacto apilado: botones a ancho completo y un solo gap entre bloques */
+  .grid-contacto{gap:20px}
+  .grid-contacto .datos-lista{margin-bottom:20px}
+  .grid-contacto .btn{display:flex;width:100%;min-height:52px}
+  .mapa-bloque{gap:20px}
+  .grid-contacto>div>.mapa-bloque{margin-top:20px}
+  .btn--llegar{align-self:stretch}
   .nav{
     position:fixed;top:0;right:0;bottom:0;left:auto;height:100vh;height:100dvh;z-index:65;
     width:min(320px,84vw);background:var(--negro-2);overflow-y:auto;

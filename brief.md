@@ -9,14 +9,16 @@
 |---|---|---|
 | Nombre comercial | 4 Hundred Garage | ✅ ficha de Google |
 | Rubro | Tienda de accesorios para automóviles + detailing + mecánica ligera | ✅ |
-| Dirección | Av. Pres. Arturo Umberto Illia 196, B1669 José C. Paz, Buenos Aires | ✅ |
+| Dirección | Av. Pres. Arturo Umberto Illia 13481, José C. Paz, Buenos Aires | ✅ confirmada por el dueño el 29/08/2026 (antes figuraba Illia 196) |
 | Teléfono / WhatsApp | 11 5912-3836 | ✅ |
-| Horario | Lunes a sábados de 9:00 a 18:00 | ⚠️ **a confirmar** (Google solo dice "abre a las 9") |
+| Horario | Lunes a viernes de 9:00 a 19:00 · Sábados de 9:00 a 14:00 | ✅ confirmado por el dueño el 29/08/2026 |
 | Email | contacto@4hundredgarage.com | ⚠️ **falta crear la casilla** (el dominio ya existe) |
 | Dominio | 4hundredgarage.com — comprado el 29/08/2026 en Cloudflare a nombre de MyM, conectado a Vercel. Sitio en https://www.4hundredgarage.com | ✅ |
 | Instagram | @4hundredgarage | ⚠️ **a confirmar el usuario real** |
 | Reseñas | 5.0 ★ con 2 opiniones en Google | ✅ |
 | Sitio web actual | No tiene (la ficha dice "Agregar sitio web") | ✅ |
+
+> **Nota (29/08/2026):** La ficha de Google Business todavía dice Illia 196: el dueño debe corregirla para que coincida con la web.
 
 ## Identidad visual
 
@@ -50,7 +52,7 @@ Escala a cualquier tamaño, va sobre fondo claro u oscuro y pesa menos de 1 KB.
 
 ## Pendientes antes de publicar
 
-1. Confirmar horario real, email e Instagram.
+1. Confirmar email e Instagram (horario y dirección ya confirmados el 29/08/2026).
 2. **Multimedia**: las fotos actuales son las placas de Instagram, con texto quemado encima y ~470 px de ancho. Sirven para la demo, no para el sitio final. Se cotiza aparte una sesión de fotos del taller y de 3-4 trabajos terminados (antes/después).
 3. ~~Dominio~~ — resuelto: `4hundredgarage.com` en Cloudflare (29/08/2026), conectado a Vercel. Falta crear la casilla `contacto@4hundredgarage.com`.
 4. Reseñas: las tres del sitio son textos de muestra. Reemplazar por las 2 reales de Google, o sumar reseñas nuevas antes de publicar.
