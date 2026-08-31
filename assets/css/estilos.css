@@ -623,12 +623,14 @@ p{margin:0 0 1em}
 .resena p{font-size:.98rem;color:var(--texto-sec);margin:0}
 
 /* ---------- Contacto ---------- */
-.grid-contacto{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,60px)}
+.grid-contacto{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,60px)}
+.grid-contacto>div{min-width:0}
 .datos-lista{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:20px}
 .datos-lista li{display:flex;gap:16px;align-items:flex-start}
 .datos-lista svg{width:22px;height:22px;fill:var(--rojo);flex:none;margin-top:4px}
 .datos-lista strong{display:block;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--texto-sec);margin-bottom:2px}
 .datos-lista a:hover{color:var(--rojo)}
+.datos-lista div{overflow-wrap:anywhere}
 .mapa{border-radius:var(--radio);overflow:hidden;border:1px solid var(--gris-linea);min-height:280px}
 .mapa iframe{width:100%;height:100%;min-height:280px;border:0;display:block;filter:grayscale(1) invert(.9) contrast(.85)}
 .mapa-bloque{display:flex;flex-direction:column;gap:14px}
@@ -658,10 +660,11 @@ form{display:grid;gap:16px}
 .campo input,.campo select,.campo textarea{
   background:var(--negro-2);border:1px solid var(--gris-linea);border-radius:var(--radio-sm);
   padding:14px 16px;color:#fff;font-family:inherit;font-size:1rem;transition:var(--trans);
+  width:100%;min-width:0;
 }
 .campo input:focus,.campo select:focus,.campo textarea:focus{outline:0;border-color:var(--rojo);background:var(--gris)}
 .campo textarea{resize:vertical;min-height:120px}
-.doble{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.doble{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
 .aviso-form{font-size:.88rem;padding:14px 16px;border-radius:var(--radio-sm);display:none}
 .aviso-form.ok{display:block;background:rgba(45,160,80,.14);border:1px solid rgba(45,160,80,.5);color:#7ee0a0}
 .aviso-form.error{display:block;background:rgba(254,6,20,.12);border:1px solid rgba(254,6,20,.5);color:#ff9098}
@@ -736,7 +739,8 @@ form{display:grid;gap:16px}
   .grid-mini{grid-template-columns:repeat(2,1fr)}
   .hero .contenedor{grid-template-columns:1fr}
   .hero-figura{order:-1;max-width:420px}
-  .partido,.grid-contacto{grid-template-columns:1fr}
+  .partido{grid-template-columns:1fr}
+  .grid-contacto{grid-template-columns:minmax(0,1fr)}
   .btn--llegar{align-self:center}
   .partido--inv .partido-txt{order:0}
   .franja .contenedor{grid-template-columns:1fr 1fr}
@@ -779,8 +783,10 @@ form{display:grid;gap:16px}
   .wa svg{width:26px;height:26px}
   .franja .contenedor{grid-template-columns:1fr}
   .grid-mini{grid-template-columns:1fr}
-  .lista-check,.doble{grid-template-columns:1fr}
+  .lista-check{grid-template-columns:1fr}
+  .doble{grid-template-columns:minmax(0,1fr)}
   .hero-datos{gap:14px 22px}
+  h1{font-size:clamp(1.6rem,8vw,2.4rem)}
 }
 
 
