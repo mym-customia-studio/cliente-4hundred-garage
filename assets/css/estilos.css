@@ -548,7 +548,12 @@ p{margin:0 0 1em}
   .show-marco::before,.show-marco::after{width:36px;height:36px;border-width:2px}
   .show-btn{width:42px;height:42px;font-size:1.4rem}
   .show-prev{left:8px}.show-next{right:8px}
+  /* Móvil: la foto entera (sin recortar la trompa); el fondo desenfocado rellena las franjas */
+  .show-frente{object-fit:contain}
+  .show-slide.activo .show-frente{animation-name:kenburns-suave}
+  .show-slide figcaption{padding:18px 20px}
 }
+@keyframes kenburns-suave{from{transform:scale(1)}to{transform:scale(1.02)}}
 /* En pantallas táctiles las fotos se deslizan con el dedo: sin flechas */
 @media (hover:none) and (pointer:coarse){
   .show-btn{display:none}
