@@ -549,6 +549,11 @@ p{margin:0 0 1em}
   .show-btn{width:42px;height:42px;font-size:1.4rem}
   .show-prev{left:8px}.show-next{right:8px}
 }
+/* En pantallas táctiles las fotos se deslizan con el dedo: sin flechas */
+@media (hover:none) and (pointer:coarse){
+  .show-btn{display:none}
+  .show-marco{touch-action:pan-y}
+}
 
 /* ---------- Franja de confianza ---------- */
 .franja{background:var(--rojo);color:#fff}

@@ -459,6 +459,21 @@
     show.querySelector('.show-next').addEventListener('click', function () { irS(idxS + 1); relanzarS(); });
     show.addEventListener('mouseenter', function () { if (autoS) clearInterval(autoS); });
     show.addEventListener('mouseleave', relanzarS);
+    /* Deslizar con el dedo (móvil): swipe horizontal cambia de foto */
+    var marcoS = show.querySelector('.show-marco') || show;
+    var tX0 = 0, tY0 = 0, tActivo = false;
+    marcoS.addEventListener('touchstart', function (e) {
+      if (e.touches.length !== 1) return;
+      tX0 = e.touches[0].clientX; tY0 = e.touches[0].clientY; tActivo = true;
+      if (autoS) clearInterval(autoS);
+    }, { passive: true });
+    marcoS.addEventListener('touchend', function (e) {
+      if (!tActivo) return; tActivo = false;
+      var dx = e.changedTouches[0].clientX - tX0, dy = e.changedTouches[0].clientY - tY0;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) irS(dx < 0 ? idxS + 1 : idxS - 1);
+      relanzarS();
+    }, { passive: true });
+    marcoS.addEventListener('touchcancel', function () { tActivo = false; relanzarS(); }, { passive: true });
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) { if (autoS) clearInterval(autoS); } else relanzarS();
     });
