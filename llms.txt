@@ -9,7 +9,7 @@
 - [Ploteo vehicular y comercial](https://www.4hundredgarage.com/ploteo): ploteo de autos, flotas y utilitarios, vidrieras y cartelería para locales, wrapping y cambio de color; preguntas frecuentes.
 - [Estética y personalización](https://www.4hundredgarage.com/estetica): polarizado de vidrios, cambio de luces LED y venta de accesorios para el auto; preguntas frecuentes.
 - [Mecánica y service](https://www.4hundredgarage.com/mecanica): cambio de aceite y filtros, bujías, pastillas de freno y mantenimiento preventivo; preguntas frecuentes.
-- [Antes y después](https://www.4hundredgarage.com/galeria): comparadores deslizables de trabajos reales y enlace al Instagram del taller.
+- [Galería](https://www.4hundredgarage.com/galeria): trabajos reales por categoría (detailing, ploteo, restauración), comparadores de antes y después y enlace al Instagram del taller.
 - [Contacto](https://www.4hundredgarage.com/contacto): dirección, mapa, horario, formulario de presupuesto y WhatsApp.
 
 ## Datos de contacto

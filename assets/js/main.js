@@ -480,6 +480,145 @@
     irS(0); relanzarS();
   }
 
+  /* ---------- Tira "Nuestro taller": loop continuo; en táctil además se desliza con el dedo ---------- */
+  var tira = document.querySelector('.taller-tira');
+  if (tira && !sinMovimiento) {
+    var pistaT = tira.querySelector('.taller-pista');
+    var fotosBase = [].slice.call(pistaT.children);
+    var clonarT = function () {
+      fotosBase.forEach(function (f) {
+        var c = f.cloneNode(true); c.setAttribute('aria-hidden', 'true');
+        c.querySelectorAll('img').forEach(function (im) { im.alt = ''; im.loading = 'eager'; });
+        pistaT.appendChild(c);
+      });
+    };
+    var anchoSet = function () { return pistaT.scrollWidth; };
+    if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+      /* PC: se repite el juego de fotos hasta cubrir el ancho de la ventana y se duplica una vez más; la animación corre -50% */
+      var guardia = 0;
+      while (anchoSet() < window.innerWidth + 100 && guardia++ < 6) clonarT();
+      var mitad = pistaT.children.length;
+      for (var k = 0; k < mitad; k++) {
+        var c2 = pistaT.children[k].cloneNode(true); c2.setAttribute('aria-hidden', 'true');
+        c2.querySelectorAll('img').forEach(function (im) { im.alt = ''; });
+        pistaT.appendChild(c2);
+      }
+      pistaT.classList.add('loop');
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (en) { pistaT.style.animationPlayState = en.isIntersecting ? 'running' : 'paused'; });
+        }).observe(tira);
+      }
+    } else {
+      /* Táctil: corre continua como en PC (scroll nativo movido por rAF); el dedo la frena y la desliza, y retoma sola */
+      clonarT();
+      var fotosT = [].slice.call(pistaT.children), rafT = null, tPrev = 0, tocando = false, reanudaT = null, enPantallaT = false;
+      var VEL = 46; /* px por segundo, igual que el loop de PC */
+      var anchoJuego = function () { return fotosT[fotosBase.length].offsetLeft - fotosT[0].offsetLeft; };
+      var paso = function (t) {
+        rafT = null;
+        if (!enPantallaT || tocando || document.hidden) return;
+        if (tPrev) {
+          var dt = Math.min(t - tPrev, 64) / 1000;
+          var x = tira.scrollLeft + VEL * dt, aj = anchoJuego();
+          if (x >= aj) x -= aj;
+          tira.scrollLeft = x;
+        }
+        tPrev = t; rafT = requestAnimationFrame(paso);
+      };
+      var correrT = function () { tPrev = 0; if (!rafT) rafT = requestAnimationFrame(paso); };
+      var frenarT = function () { tocando = true; if (reanudaT) clearTimeout(reanudaT); };
+      var soltarT = function () { if (reanudaT) clearTimeout(reanudaT); reanudaT = setTimeout(function () { tocando = false; correrT(); }, 2500); };
+      tira.addEventListener('touchstart', frenarT, { passive: true });
+      tira.addEventListener('touchend', soltarT, { passive: true });
+      tira.addEventListener('touchcancel', soltarT, { passive: true });
+      tira.addEventListener('scroll', function () {
+        /* si el dedo lo lleva al borde del segundo juego (o antes del primero), se reubica en el mismo cuadro */
+        var aj = anchoJuego();
+        if (tira.scrollLeft >= aj * 2 - tira.clientWidth - 2) tira.scrollLeft -= aj;
+        else if (tira.scrollLeft <= 0 && tocando) tira.scrollLeft += aj;
+      }, { passive: true });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (en) { enPantallaT = en.isIntersecting; if (enPantallaT) correrT(); });
+        }, { threshold: 0.2 }).observe(tira);
+      } else { enPantallaT = true; correrT(); }
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) correrT(); });
+    }
+  }
+
+  /* ---------- Galería por categorías + visor ---------- */
+  var galeria = document.querySelector('.galeria');
+  if (galeria) {
+    var tabsG = [].slice.call(galeria.querySelectorAll('.galeria-tab'));
+    var itemsG = [].slice.call(galeria.querySelectorAll('.galeria-item'));
+    var vacioG = galeria.querySelector('.galeria-vacio');
+    var catActual = 'todos';
+    var visibles = function () { return itemsG.filter(function (it) { return catActual === 'todos' || it.getAttribute('data-cat') === catActual; }); };
+    function filtrar(cat, inicial) {
+      catActual = cat;
+      tabsG.forEach(function (t) { var on = t.getAttribute('data-cat') === cat; t.classList.toggle('activo', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      var hay = 0;
+      itemsG.forEach(function (it) {
+        var ok = cat === 'todos' || it.getAttribute('data-cat') === cat;
+        if (ok) hay++;
+        it.classList.remove('entra');
+        if (ok) { it.hidden = false; if (!inicial && !sinMovimiento) { void it.offsetWidth; it.classList.add('entra'); } }
+        else it.hidden = true;
+      });
+      if (vacioG) vacioG.hidden = hay > 0;
+      if (!inicial && history.replaceState) history.replaceState(null, '', cat === 'todos' ? location.pathname : '#' + cat);
+    }
+    tabsG.forEach(function (t) { t.addEventListener('click', function () { filtrar(t.getAttribute('data-cat')); }); });
+    var hashG = location.hash.replace('#', '');
+    filtrar(tabsG.some(function (t) { return t.getAttribute('data-cat') === hashG; }) ? hashG : 'todos', true);
+
+    /* visor */
+    var visor = document.querySelector('.visor');
+    if (visor) {
+      var vImg = visor.querySelector('.visor-img'), vPie = visor.querySelector('.visor-pie'), idxV = 0, listaV = [], ultimoFoco = null;
+      function mostrarV(i) {
+        listaV = visibles(); if (!listaV.length) return;
+        idxV = (i + listaV.length) % listaV.length;
+        var it = listaV[idxV], img = it.querySelector('img'), src = img.currentSrc || img.src;
+        /* siempre la versión grande */
+        src = src.replace(/-800\.(webp|jpg)$/, '.$1');
+        vImg.src = src; vImg.alt = img.alt;
+        vPie.textContent = it.querySelector('figcaption').textContent.replace(/^(Detailing|Ploteo|Restauración)/, '$1 · ');
+        visor.querySelector('.visor-prev').hidden = visor.querySelector('.visor-next').hidden = listaV.length < 2;
+      }
+      function abrirV(i) {
+        ultimoFoco = document.activeElement; mostrarV(i);
+        visor.hidden = false; visor.setAttribute('aria-hidden', 'false'); visor.classList.add('abre');
+        document.body.style.overflow = 'hidden'; visor.querySelector('.visor-cerrar').focus();
+      }
+      function cerrarV() {
+        visor.hidden = true; visor.setAttribute('aria-hidden', 'true'); visor.classList.remove('abre');
+        document.body.style.overflow = ''; if (ultimoFoco) ultimoFoco.focus();
+      }
+      itemsG.forEach(function (it) {
+        it.querySelector('.galeria-abrir').addEventListener('click', function () { abrirV(visibles().indexOf(it)); });
+      });
+      visor.querySelector('.visor-cerrar').addEventListener('click', cerrarV);
+      visor.querySelector('.visor-fondo').addEventListener('click', cerrarV);
+      visor.querySelector('.visor-prev').addEventListener('click', function () { mostrarV(idxV - 1); });
+      visor.querySelector('.visor-next').addEventListener('click', function () { mostrarV(idxV + 1); });
+      document.addEventListener('keydown', function (e) {
+        if (visor.hidden) return;
+        if (e.key === 'Escape') cerrarV();
+        else if (e.key === 'ArrowLeft') mostrarV(idxV - 1);
+        else if (e.key === 'ArrowRight') mostrarV(idxV + 1);
+      });
+      var vx0 = 0, vy0 = 0;
+      visor.addEventListener('touchstart', function (e) { vx0 = e.touches[0].clientX; vy0 = e.touches[0].clientY; }, { passive: true });
+      visor.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - vx0, dy = e.changedTouches[0].clientY - vy0;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrarV(dx < 0 ? idxV + 1 : idxV - 1);
+        else if (dy > 90 && Math.abs(dy) > Math.abs(dx) * 1.5) cerrarV();
+      }, { passive: true });
+    }
+  }
+
   /* ---------- Formulario de contacto (Vercel + Resend) ---------- */
   var form = document.querySelector('form[data-form="contacto"]');
   if (form) {

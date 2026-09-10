@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Antes y después de trabajos reales | 4 Hundred Garage</title>
-<meta name="description" content="Antes y después de trabajos reales de detailing, pulido, ploteo y restauración en 4 Hundred Garage, José C. Paz. Deslizá y mirá la diferencia.">
+<title>Galería de trabajos: detailing, ploteo y restauración | 4 Hundred Garage</title>
+<meta name="description" content="Galería de trabajos reales de 4 Hundred Garage en José C. Paz: detailing, ploteo y restauración, con comparadores de antes y después.">
 <meta name="theme-color" content="#0C0C0D">
 <link rel="canonical" href="https://www.4hundredgarage.com/galeria">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/img/isotipo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <meta property="og:site_name" content="4 Hundred Garage">
-<meta property="og:title" content="Antes y después de trabajos reales | 4 Hundred Garage">
-<meta property="og:description" content="Antes y después de trabajos reales de detailing, pulido, ploteo y restauración en 4 Hundred Garage, José C. Paz. Deslizá y mirá la diferencia.">
+<meta property="og:title" content="Galería de trabajos: detailing, ploteo y restauración | 4 Hundred Garage">
+<meta property="og:description" content="Galería de trabajos reales de 4 Hundred Garage en José C. Paz: detailing, ploteo y restauración, con comparadores de antes y después.">
 <meta property="og:url" content="https://www.4hundredgarage.com/galeria">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
@@ -21,15 +21,15 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Parrilla neón y logo de 4 Hundred Garage">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Antes y después de trabajos reales | 4 Hundred Garage">
-<meta name="twitter:description" content="Antes y después de trabajos reales de detailing, pulido, ploteo y restauración en 4 Hundred Garage, José C. Paz. Deslizá y mirá la diferencia.">
+<meta name="twitter:title" content="Galería de trabajos: detailing, ploteo y restauración | 4 Hundred Garage">
+<meta name="twitter:description" content="Galería de trabajos reales de 4 Hundred Garage en José C. Paz: detailing, ploteo y restauración, con comparadores de antes y después.">
 <meta name="twitter:image" content="https://www.4hundredgarage.com/assets/img/og.jpg">
 <link rel="preload" href="assets/fonts/poppins-800i.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/estilos.min.css?v=20260909b">
-<link rel="stylesheet" href="assets/css/galeria.min.css?v=20260903">
+<link rel="stylesheet" href="assets/css/estilos.min.css?v=20260909f">
+<link rel="stylesheet" href="assets/css/galeria.min.css?v=20260909b">
 
-<script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.4hundredgarage.com/" }, { "@type": "ListItem", "position": 2, "name": "Antes y después", "item": "https://www.4hundredgarage.com/galeria" } ] }</script>
+<script type="application/ld+json">{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.4hundredgarage.com/" }, { "@type": "ListItem", "position": 2, "name": "Galería", "item": "https://www.4hundredgarage.com/galeria" } ] }</script>
 </head>
 <body>
 
@@ -62,15 +62,148 @@
 
 <section class="hero-int">
   <div class="contenedor">
-    <p class="miga"><a href="/">Inicio</a> / Antes y después</p>
-    <h1>Antes y<br>después</h1>
-    <p>Trabajos reales, sin filtros. Deslizá para ver la diferencia.</p>
+    <p class="miga"><a href="/">Inicio</a> / Galería</p>
+    <h1>Nuestros<br>trabajos</h1>
+    <p>Detailing, ploteo y restauración. Elegí una categoría y tocá una foto para verla grande.</p>
   </div>
 </section>
 
-<section class="seccion">
+<section class="seccion galeria" id="trabajos">
   <div class="contenedor">
-    <div class="lista-comparar">
+    <div class="galeria-tabs" role="tablist" aria-label="Categorías de trabajos">
+      <button class="galeria-tab activo" type="button" role="tab" aria-selected="true" data-cat="todos">Todos</button>
+      <button class="galeria-tab" type="button" role="tab" aria-selected="false" data-cat="detailing">Detailing</button>
+      <button class="galeria-tab" type="button" role="tab" aria-selected="false" data-cat="ploteo">Ploteo</button>
+      <button class="galeria-tab" type="button" role="tab" aria-selected="false" data-cat="restauracion">Restauración</button>
+    </div>
+    <!-- Para sumar un trabajo: copiar un <figure class="galeria-item"> completo, cambiar data-cat (detailing | ploteo | restauracion),
+         el nombre de archivo (gal-<categoria>-NN-<auto>, 1600x900 + -800, .webp y .jpg), el alt y el pie. -->
+    <div class="galeria-grilla">
+      <figure class="galeria-item" data-cat="detailing">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Detailing, Mercedes-Benz Clase C">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-detailing-01-mercedes-800.webp 800w, assets/img/gal-detailing-01-mercedes.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-detailing-01-mercedes.jpg" srcset="assets/img/gal-detailing-01-mercedes-800.jpg 800w, assets/img/gal-detailing-01-mercedes.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="Mercedes-Benz Clase C blanco después del detailing" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Detailing</span>Mercedes-Benz Clase C</figcaption>
+      </figure>
+      <figure class="galeria-item" data-cat="detailing">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Detailing, Mercedes-Benz Clase C">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-detailing-02-mercedes-c-800.webp 800w, assets/img/gal-detailing-02-mercedes-c.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-detailing-02-mercedes-c.jpg" srcset="assets/img/gal-detailing-02-mercedes-c-800.jpg 800w, assets/img/gal-detailing-02-mercedes-c.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="Mercedes-Benz Clase C gris plata de frente, después del detailing" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Detailing</span>Mercedes-Benz Clase C</figcaption>
+      </figure>
+      <figure class="galeria-item" data-cat="detailing">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Detailing, DS 3 Crossback">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-detailing-03-ds3-800.webp 800w, assets/img/gal-detailing-03-ds3.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-detailing-03-ds3.jpg" srcset="assets/img/gal-detailing-03-ds3-800.jpg 800w, assets/img/gal-detailing-03-ds3.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="DS 3 Crossback blanco perlado de perfil, después del detailing" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Detailing</span>DS 3 Crossback</figcaption>
+      </figure>
+      <figure class="galeria-item" data-cat="detailing">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Detailing, BYD Shark">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-detailing-04-byd-shark-800.webp 800w, assets/img/gal-detailing-04-byd-shark.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-detailing-04-byd-shark.jpg" srcset="assets/img/gal-detailing-04-byd-shark-800.jpg 800w, assets/img/gal-detailing-04-byd-shark.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="Pickup BYD Shark beige de frente dentro del taller, después del detailing" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Detailing</span>BYD Shark</figcaption>
+      </figure>
+      <figure class="galeria-item" data-cat="restauracion">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Restauración, Mercedes-Benz W124">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-restauracion-01-mercedes-w124-800.webp 800w, assets/img/gal-restauracion-01-mercedes-w124.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-restauracion-01-mercedes-w124.jpg" srcset="assets/img/gal-restauracion-01-mercedes-w124-800.jpg 800w, assets/img/gal-restauracion-01-mercedes-w124.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="Mercedes-Benz W124 azul clásico de frente, en restauración" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Restauración</span>Mercedes-Benz W124</figcaption>
+      </figure>
+      <figure class="galeria-item" data-cat="detailing">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Detailing, BYD Song Plus">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-detailing-05-byd-song-800.webp 800w, assets/img/gal-detailing-05-byd-song.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-detailing-05-byd-song.jpg" srcset="assets/img/gal-detailing-05-byd-song-800.jpg 800w, assets/img/gal-detailing-05-byd-song.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="BYD Song Plus blanca de perfil dentro del taller, después del detailing" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Detailing</span>BYD Song Plus</figcaption>
+      </figure>
+      <figure class="galeria-item" data-cat="ploteo">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Ploteo, Fiat Siena">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-ploteo-01-fiat-siena-800.webp 800w, assets/img/gal-ploteo-01-fiat-siena.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-ploteo-01-fiat-siena.jpg" srcset="assets/img/gal-ploteo-01-fiat-siena-800.jpg 800w, assets/img/gal-ploteo-01-fiat-siena.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="Fiat Siena ploteado en azul brillante, vista trasera" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Ploteo</span>Fiat Siena</figcaption>
+      </figure>
+      <figure class="galeria-item" data-cat="ploteo">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Ploteo, Peugeot 208">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-ploteo-02-peugeot-208-800.webp 800w, assets/img/gal-ploteo-02-peugeot-208.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-ploteo-02-peugeot-208.jpg" srcset="assets/img/gal-ploteo-02-peugeot-208-800.jpg 800w, assets/img/gal-ploteo-02-peugeot-208.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="Peugeot 208 ploteado en gris, vista frontal" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Ploteo</span>Peugeot 208</figcaption>
+      </figure>
+      <figure class="galeria-item" data-cat="ploteo">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Ploteo, VW Amarok">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-ploteo-03-vw-amarok-800.webp 800w, assets/img/gal-ploteo-03-vw-amarok.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-ploteo-03-vw-amarok.jpg" srcset="assets/img/gal-ploteo-03-vw-amarok-800.jpg 800w, assets/img/gal-ploteo-03-vw-amarok.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="Volkswagen Amarok blanca ploteada, vista tres cuartos frontal" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Ploteo</span>VW Amarok</figcaption>
+      </figure>
+      <figure class="galeria-item" data-cat="restauracion">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Restauración, VW Gol">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-restauracion-02-vw-gol-800.webp 800w, assets/img/gal-restauracion-02-vw-gol.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-restauracion-02-vw-gol.jpg" srcset="assets/img/gal-restauracion-02-vw-gol-800.jpg 800w, assets/img/gal-restauracion-02-vw-gol.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="Volkswagen Gol blanco con capot ploteado en rojo y negro, vista frontal" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Restauración</span>VW Gol</figcaption>
+      </figure>
+      <figure class="galeria-item" data-cat="restauracion">
+        <button class="galeria-abrir" type="button" aria-label="Ver grande: Restauración, Ford F-100">
+          <picture>
+            <source type="image/webp" srcset="assets/img/gal-restauracion-03-ford-f100-800.webp 800w, assets/img/gal-restauracion-03-ford-f100.webp 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px">
+            <img src="assets/img/gal-restauracion-03-ford-f100.jpg" srcset="assets/img/gal-restauracion-03-ford-f100-800.jpg 800w, assets/img/gal-restauracion-03-ford-f100.jpg 1600w" sizes="(max-width:600px) 92vw, (max-width:1000px) 46vw, 380px" width="1600" height="900" alt="Ford F-100 azul restaurada, vista frontal" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <figcaption><span class="galeria-cat">Restauración</span>Ford F-100</figcaption>
+      </figure>
+    </div>
+    <p class="galeria-vacio" hidden>Todavía no cargamos trabajos de esta categoría. Mirá los últimos en <a href="https://www.instagram.com/4hundredgarage/" target="_blank" rel="noopener">Instagram</a>.</p>
+  </div>
+</section>
+
+<!-- Visor de fotos -->
+<div class="visor" hidden aria-hidden="true">
+  <div class="visor-fondo"></div>
+  <div class="visor-caja" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button class="visor-cerrar" type="button" aria-label="Cerrar">×</button>
+    <button class="visor-btn visor-prev" type="button" aria-label="Foto anterior">‹</button>
+    <figure class="visor-figura">
+      <img class="visor-img" src="" alt="" width="1600" height="900">
+      <figcaption class="visor-pie"></figcaption>
+    </figure>
+    <button class="visor-btn visor-next" type="button" aria-label="Foto siguiente">›</button>
+  </div>
+</div>
+
+<section class="seccion seccion--alt" id="antes-despues">
+  <div class="contenedor">
+    <div class="centrado aparece">
+      <span class="etiqueta">Antes y después</span>
+      <h2>Deslizá y mirá la diferencia</h2>
+    </div>
+    <div class="lista-comparar sep-46">
       <!-- Para sumar un par nuevo: copiar un <figure class="comparar aparece"> completo, cambiar el número (galeria-04-antes / galeria-04-despues,
            1600x900 en .webp y .jpg), los alt y el pie. Misma toma y mismo ángulo en las dos fotos. -->
       <figure class="comparar aparece">
@@ -151,7 +284,7 @@
 
 <a class="wa" href="https://wa.me/5491159123836?text=Hola%204%20Hundred%20Garage%2C%20quiero%20pedir%20un%20turno" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1s-.8 1-.9 1.2c-.2.2-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.6.3-.5v-.5l-.9-2.2c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.3 5.3 4.6.7.3 1.3.5 1.8.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
 
-<script src="assets/js/main.js?v=20260909"></script>
+<script src="assets/js/main.js?v=20260909g"></script>
 <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "af971c81d29f4138916e23c4c1736f47"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

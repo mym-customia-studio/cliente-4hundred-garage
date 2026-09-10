@@ -560,6 +560,38 @@ p{margin:0 0 1em}
   .show-marco{touch-action:pan-y}
 }
 
+/* ---------- Nuestro taller (tira de fotos) ---------- */
+.taller .taller-txt{max-width:640px;margin:14px auto 0;color:var(--texto-sec)}
+.taller-tira{margin-top:44px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.taller-pista{display:flex;gap:16px;width:max-content;padding:6px 0 10px}
+.taller-foto{margin:0;flex:none;height:clamp(240px,36vh,400px);border-radius:var(--radio);overflow:hidden;
+  background:var(--negro-2);border:1px solid var(--gris-linea);
+  transition:transform .45s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s}
+.taller-foto picture{display:block;height:100%}
+.taller-foto img{display:block;height:100%;width:auto;object-fit:cover}
+.taller-foto:hover{transform:translateY(-6px) scale(1.02);border-color:rgba(254,6,20,.7);
+  box-shadow:0 0 0 1px rgba(254,6,20,.25),0 18px 40px rgba(0,0,0,.5),0 0 34px rgba(254,6,20,.28)}
+.taller-tira.aparece{opacity:0;transform:translateY(26px)}
+.taller-tira.aparece.visible{opacity:1;transform:none;transition:opacity .7s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+/* PC: la tira corre sola en loop (el JS duplica las fotos) y se frena al pasar el mouse */
+@media (hover:hover) and (pointer:fine){
+  .taller-pista.loop{animation:correr 48s linear infinite;will-change:transform}
+  .taller-tira:hover .taller-pista{animation-play-state:paused}
+}
+/* Táctil: se desliza con el dedo, con imán por foto */
+@media (hover:none),(pointer:coarse){
+  .taller-tira{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;-webkit-mask-image:none;mask-image:none}
+  .taller-tira::-webkit-scrollbar{display:none}
+  .taller-pista{padding-left:max(16px,calc((100vw - var(--ancho,1200px))/2 + 16px));padding-right:16px}
+  .taller-foto{height:clamp(220px,38vh,320px)}
+  .taller-foto img{max-width:80vw}
+  .taller-foto:hover{transform:none}
+}
+@media (prefers-reduced-motion:reduce){.taller-pista.loop{animation:none}}
+
 /* ---------- Franja de confianza ---------- */
 .franja{background:var(--rojo);color:#fff}
 .franja .contenedor{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding-top:26px;padding-bottom:26px}
