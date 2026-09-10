@@ -12,7 +12,7 @@ Sitio del cliente **4 Hundred Garage** (taller de detailing, estética y mecáni
 
 1. **Contenido, no estructura.** En este repo se cambia CONTENIDO (textos, fotos, datos de contacto, testimonios). No se cambia ESTRUCTURA (secciones, layout, arquitectura de páginas), salvo indicación explícita de Maxi.
 2. **Paleta y tipografías** viven en las variables de `:root` en `assets/css/estilos.css`. Cualquier ajuste de color o fuente se hace ahí, no en reglas sueltas.
-3. **Credenciales: nunca en archivos.** Las claves (Resend, etc.) van en variables de entorno de Vercel (`RESEND_API_KEY`, `MAIL_DESTINO`, `MAIL_ORIGEN`). No hardcodear nada en `api/contacto.js` ni en ningún otro archivo.
+3. **Credenciales: nunca en archivos.** El formulario se envía al Worker de Cloudflare `mym-forms` (repo `mym-base`, `operacion/mym-forms/`), que manda el mail con Cloudflare Email a la casilla verificada en Email Routing. El secreto de Turnstile vive en el Worker (`wrangler secret`); en este repo solo va la site key pública y la URL del endpoint (`data-endpoint` en `contacto.html`). No hay funciones en Vercel.
 4. **Idioma:** todo el contenido en español rioplatense, trato de **"vos"** al usuario final.
 5. **`brief.md` es la fuente de verdad** de los datos del cliente (dirección, teléfono, horario, email, redes, dominio, pendientes). Cuando cambia un dato, se actualiza el brief además del sitio.
 6. **Antes de hacer commit**, listar los archivos modificados y esperar confirmación de Maxi. No commitear ni pushear por cuenta propia.
@@ -86,7 +86,6 @@ contacto.html     Datos, mapa y formulario
 assets/css/       estilos.css (variables en :root)
 assets/js/        main.js
 assets/img/       fotos + logo.svg + isotipo.svg
-api/contacto.js   Función serverless de Vercel → Resend
 brief.md          Datos del cliente y pendientes
 ```
 

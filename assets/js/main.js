@@ -619,34 +619,39 @@
     }
   }
 
-  /* ---------- Formulario de contacto (Vercel + Resend) ---------- */
+  /* ---------- Formulario de contacto → Worker mym-forms (Cloudflare Email + Turnstile) ---------- */
   var form = document.querySelector('form[data-form="contacto"]');
   if (form) {
     var aviso = form.querySelector('.aviso-form');
     var boton = form.querySelector('button[type="submit"]');
+    var endpoint = form.getAttribute('data-endpoint');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (form.querySelector('[name="empresa"]').value) return; // honeypot
+      if (!form.checkValidity()) { form.reportValidity(); return; }
       var textoOriginal = boton.textContent;
       boton.disabled = true; boton.textContent = 'Enviando…';
       aviso.className = 'aviso-form';
 
-      fetch('/api/contacto', {
+      fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(new FormData(form)))
       })
-        .then(function (r) { if (!r.ok) throw new Error('fallo'); return r.json(); })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { if (!r.ok) throw new Error(d.error || 'fallo'); return d; }); })
         .then(function () {
           aviso.className = 'aviso-form ok';
           aviso.textContent = '¡Listo! Recibimos tu consulta. Te respondemos a la brevedad por WhatsApp o mail.';
           form.reset();
         })
-        .catch(function () {
+        .catch(function (err) {
           aviso.className = 'aviso-form error';
-          aviso.textContent = 'No pudimos enviar el mensaje. Escribinos por WhatsApp al 11 5912-3836.';
+          aviso.textContent = (err && err.message && err.message !== 'fallo' && err.message !== 'Failed to fetch' ? err.message + ' ' : 'No pudimos enviar el mensaje. ') + 'También podés escribirnos por WhatsApp al 11 5912-3836.';
         })
-        .finally(function () { boton.disabled = false; boton.textContent = textoOriginal; });
+        .finally(function () {
+          boton.disabled = false; boton.textContent = textoOriginal;
+          if (window.turnstile) { try { window.turnstile.reset(); } catch (e2) {} }
+        });
     });
   }
 
