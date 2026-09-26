@@ -566,6 +566,21 @@
         if (ok) { it.hidden = false; if (!inicial && !sinMovimiento) { void it.offsetWidth; it.classList.add('entra'); } }
         else it.hidden = true;
       });
+      /* En el celular la grilla va a 2 columnas: si quedan impares, la primera visible
+         ocupa las dos para que ninguna quede sola en la ultima fila. */
+      var vis = visibles();
+      var medida = function (it, v) {
+        var im = it.querySelector('img'), so = it.querySelector('source');
+        if (im) { im.sizes = v; if (so) so.sizes = v; }
+      };
+      itemsG.forEach(function (it) {
+        it.classList.remove('galeria-item--doble');
+        medida(it, '(max-width:1000px) 48vw, 31vw');
+      });
+      if (vis.length > 1 && vis.length % 2 === 1) {
+        vis[0].classList.add('galeria-item--doble');
+        medida(vis[0], '(max-width:1000px) 96vw, 31vw');
+      }
       if (vacioG) vacioG.hidden = hay > 0;
       if (!inicial && history.replaceState) history.replaceState(null, '', cat === 'todos' ? location.pathname : '#' + cat);
     }
@@ -576,19 +591,68 @@
     /* visor */
     var visor = document.querySelector('.visor');
     if (visor) {
-      var vImg = visor.querySelector('.visor-img'), vPie = visor.querySelector('.visor-pie'), idxV = 0, listaV = [], ultimoFoco = null;
-      function mostrarV(i) {
-        listaV = visibles(); if (!listaV.length) return;
-        idxV = (i + listaV.length) % listaV.length;
-        var it = listaV[idxV], img = it.querySelector('img'), src = img.currentSrc || img.src;
-        /* siempre la versión grande */
-        src = src.replace(/-800\.(webp|jpg)$/, '.$1');
-        vImg.src = src; vImg.alt = img.alt;
-        vPie.textContent = it.querySelector('figcaption').textContent.replace(/^(Detailing|Ploteo|Restauración)/, '$1 · ');
-        visor.querySelector('.visor-prev').hidden = visor.querySelector('.visor-next').hidden = listaV.length < 2;
+      var vImg = visor.querySelector('.visor-img'), vPie = visor.querySelector('.visor-pie'),
+          vTira = visor.querySelector('.visor-tira'),
+          idxV = 0, listaV = [], pieBase = '', ultimoFoco = null;
+
+      /* Fotos de un trabajo: primero los pasos del proceso (ul.galeria-pasos),
+         y al final la foto que se exhibe en la grilla. */
+      function fotosDe(it) {
+        var lista = [], pasos = it.querySelector('.galeria-pasos');
+        if (pasos) {
+          [].slice.call(pasos.querySelectorAll('li')).forEach(function (li) {
+            var s = li.getAttribute('data-src');
+            if (s) lista.push({ src: s, alt: li.getAttribute('data-alt') || '' });
+          });
+        }
+        var img = it.querySelector('img');
+        lista.push({ src: (img.currentSrc || img.src).replace(/-800\.(webp|jpg)$/, '.$1'), alt: img.alt });
+        return lista;
       }
-      function abrirV(i) {
-        ultimoFoco = document.activeElement; mostrarV(i);
+      var chica = function (src) { return src.replace(/\.(webp|jpg)$/, '-800.$1'); };
+
+      function pintarTira() {
+        if (!vTira) return;
+        var hay = listaV.length > 1;
+        vTira.innerHTML = '';
+        vTira.hidden = !hay;
+        visor.classList.toggle('visor--tira', hay);
+        if (!hay) return;
+        listaV.forEach(function (f, i) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'visor-mini';
+          b.setAttribute('aria-label', 'Foto ' + (i + 1) + ' de ' + listaV.length);
+          var m = document.createElement('img');
+          m.src = chica(f.src); m.alt = ''; m.loading = 'lazy'; m.decoding = 'async';
+          b.appendChild(m);
+          b.addEventListener('click', function () { mostrarV(i); });
+          vTira.appendChild(b);
+        });
+      }
+
+      function mostrarV(i) {
+        if (!listaV.length) return;
+        idxV = (i + listaV.length) % listaV.length;
+        var f = listaV[idxV];
+        vImg.src = f.src; vImg.alt = f.alt;
+        vPie.textContent = pieBase + (listaV.length > 1 ? '  \u00b7  ' + (idxV + 1) + '/' + listaV.length : '');
+        visor.querySelector('.visor-prev').hidden = visor.querySelector('.visor-next').hidden = listaV.length < 2;
+        if (vTira) [].slice.call(vTira.children).forEach(function (b, n) {
+          var on = n === idxV;
+          b.classList.toggle('activa', on);
+          if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+        });
+        if (listaV.length > 1) { var sig = new Image(); sig.src = listaV[(idxV + 1) % listaV.length].src; }
+      }
+
+      function abrirV(it) {
+        ultimoFoco = document.activeElement;
+        listaV = fotosDe(it);
+        pieBase = it.querySelector('figcaption').textContent.replace(/^(Detailing|Ploteo|Restauraci\u00f3n)/, '$1 \u00b7 ');
+        idxV = 0;
+        pintarTira();
+        mostrarV(0);
         visor.hidden = false; visor.setAttribute('aria-hidden', 'false'); visor.classList.add('abre');
         document.body.style.overflow = 'hidden'; visor.querySelector('.visor-cerrar').focus();
       }
@@ -597,7 +661,7 @@
         document.body.style.overflow = ''; if (ultimoFoco) ultimoFoco.focus();
       }
       itemsG.forEach(function (it) {
-        it.querySelector('.galeria-abrir').addEventListener('click', function () { abrirV(visibles().indexOf(it)); });
+        it.querySelector('.galeria-abrir').addEventListener('click', function () { abrirV(it); });
       });
       visor.querySelector('.visor-cerrar').addEventListener('click', cerrarV);
       visor.querySelector('.visor-fondo').addEventListener('click', cerrarV);
@@ -616,6 +680,7 @@
         if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) mostrarV(dx < 0 ? idxV + 1 : idxV - 1);
         else if (dy > 90 && Math.abs(dy) > Math.abs(dx) * 1.5) cerrarV();
       }, { passive: true });
+
     }
   }
 
