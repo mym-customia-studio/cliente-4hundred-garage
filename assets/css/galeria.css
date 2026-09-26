@@ -103,13 +103,9 @@ html:has(.lista-comparar){scroll-snap-type:y proximity} /* el snap vive en el el
   .galeria-grilla>.galeria-item--doble{flex-basis:100%}
 }
 @media (max-width:600px){
-  .galeria-grilla{gap:10px}
-  .galeria-grilla>.galeria-item{flex-basis:calc(50% - 5px)}
+  .galeria-grilla{gap:14px}
+  .galeria-grilla>.galeria-item,
   .galeria-grilla>.galeria-item--doble{flex-basis:100%}
-  .galeria-item figcaption{left:5%;right:5%;bottom:5%;padding:26px 10px 8px;font-size:.78rem}
-  .galeria-cat{font-size:.58rem;letter-spacing:.12em}
-  .galeria-item--doble figcaption{padding:34px 14px 10px;font-size:.95rem}
-  .galeria-item--doble .galeria-cat{font-size:.68rem;letter-spacing:.16em}
   .galeria-tabs{gap:8px;margin-bottom:26px}
   .galeria-tab{padding:9px 16px;font-size:.8rem}
   .visor{padding:10px}

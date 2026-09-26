@@ -575,11 +575,11 @@
       };
       itemsG.forEach(function (it) {
         it.classList.remove('galeria-item--doble');
-        medida(it, '(max-width:1000px) 48vw, 31vw');
+        medida(it, '(max-width:600px) 92vw, (max-width:1000px) 48vw, 31vw');
       });
       if (vis.length > 1 && vis.length % 2 === 1) {
         vis[0].classList.add('galeria-item--doble');
-        medida(vis[0], '(max-width:1000px) 96vw, 31vw');
+        medida(vis[0], '(max-width:600px) 92vw, (max-width:1000px) 96vw, 31vw');
       }
       if (vacioG) vacioG.hidden = hay > 0;
       if (!inicial && history.replaceState) history.replaceState(null, '', cat === 'todos' ? location.pathname : '#' + cat);
