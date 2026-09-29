@@ -1,6 +1,6 @@
 # CLAUDE.md — cliente-4hundred-garage
 
-Sitio del cliente **4 Hundred Garage** (taller de detailing, estética y mecánica ligera en José C. Paz, Buenos Aires). Es un **Plan 2 multipágina** de MyM CustomIA Studio, nacido de la plantilla `plantillas/plan2/multipagina-01-talleres` del repo `mym-base`. Desde que se creó, este repo es 100 % independiente de la plantilla: no se sincroniza ni en un sentido ni en el otro.
+Sitio del cliente **4 Hundred Garage** (taller de detailing, estética y mecánica ligera en Del Viso, partido de Pilar, Buenos Aires). Es un **Plan 2 multipágina** de MyM CustomIA Studio, nacido de la plantilla `plantillas/plan2/multipagina-01-talleres` del repo `mym-base`. Desde que se creó, este repo es 100 % independiente de la plantilla: no se sincroniza ni en un sentido ni en el otro.
 
 ## Publicación
 

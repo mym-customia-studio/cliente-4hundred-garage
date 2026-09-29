@@ -9,7 +9,7 @@
 |---|---|---|
 | Nombre comercial | 4 Hundred Garage | ✅ ficha de Google |
 | Rubro | Tienda de accesorios para automóviles + detailing + mecánica ligera | ✅ |
-| Dirección | Av. Pres. Arturo Umberto Illia 13481, José C. Paz, Buenos Aires | ✅ confirmada por el dueño el 29/08/2026 (antes figuraba Illia 196) |
+| Dirección | Av. Pres. Arturo Umberto Illia 13481, B1669 Del Viso, partido de Pilar, Buenos Aires | ⚠️ **En conflicto.** El dueño confirmó "José C. Paz" el 29/08/2026 (y ahí se cambió Illia 196 → 13481). El 28/09/2026 Maxi indicó que el local está en Del Viso, no en José C. Paz, y se corrigió todo el sitio. El CP B1669 es de Del Viso y la ficha de Google originalmente decía Del Viso. **Pendiente: confirmarlo con Seba.** |
 | Teléfono / WhatsApp | 11 5912-3836 | ✅ |
 | Horario | Lunes a viernes de 9:00 a 19:00 · Sábados de 9:00 a 14:00 | ✅ confirmado por el dueño el 29/08/2026 |
 | Email | contacto@4hundredgarage.com | ⚠️ **falta crear la casilla** (el dominio ya existe) |
